@@ -1,0 +1,815 @@
+{
+	"id": "4d6a8870-ef84-4376-93db-c3315bf1450a",
+	"name": "Organization-Management-Test",
+	"timestamp": "2020-10-05T04:16:13.964Z",
+	"collection_id": "713b01bd-60e1-4ba0-b1d3-eaffb76aebf1",
+	"folder_id": 0,
+	"environment_id": "7d39591a-e1e7-4bf1-80e6-e6ddd05e8921",
+	"totalPass": 37,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "751a6cd1-27b7-4432-b0e5-44ae2c62c67b",
+			"name": "GET admin user",
+			"url": "https://localhost:9443/scim2/Users?filter=username+eq+admin",
+			"time": 953,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				953
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "e7c66954-ff32-4e26-819b-042600c9ba8a",
+			"name": "GET  Org_admin Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Organization_Administrator",
+			"time": 86,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				86
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "76f4095c-f15c-41c5-9171-89cd23e65c22",
+			"name": "GET  Role_admin Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Role_Administrator",
+			"time": 57,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				57
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "f979aef5-cf3d-455e-8fe8-37770a52eb3b",
+			"name": "GET  User admin Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+User_Administrator",
+			"time": 52,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				52
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "50f8b89d-65e4-4f6b-a916-87f393332ee8",
+			"name": "Assign permissions to the org_admin role",
+			"url": "https://localhost:9443/scim2/Groups/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/permissions",
+			"time": 239,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				239
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "17a3b007-c051-4ba0-aabb-ce353c52c653",
+			"name": "Assign permissions to the role_admin role",
+			"url": "https://localhost:9443/scim2/Groups/ada47169-436c-4ab9-a8ef-c06aa641edcd/permissions",
+			"time": 74,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				74
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "d1d09e8a-fa5d-496e-b4b4-5ba6860ee5ac",
+			"name": "Assign permissions to the user_admin role",
+			"url": "https://localhost:9443/scim2/Groups/7d4e3ac9-da93-4b7a-a2d0-84bb6c01dc25/permissions",
+			"time": 82,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				82
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "cb9294cb-8fca-4780-9635-e800efff11b0",
+			"name": "Assign INTERNAL/Organization_Administrator role to admin",
+			"url": "https://localhost:9443/scim2/Groups/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63",
+			"time": 261,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				261
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "d37dca4b-1784-4b5b-a6b5-64aba6d0c98d",
+			"name": "Assign internal Role - INTERNAL/Role_Administrator to admin",
+			"url": "https://localhost:9443/scim2/Groups/ada47169-436c-4ab9-a8ef-c06aa641edcd",
+			"time": 73,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				73
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "68a20610-6d82-4fa7-92f1-0001a6f13fa3",
+			"name": "Assign internal Role - INTERNAL/User_Administrator to admin",
+			"url": "https://localhost:9443/scim2/Groups/7d4e3ac9-da93-4b7a-a2d0-84bb6c01dc25",
+			"time": 92,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				92
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "c4161c50-b122-4b12-be8e-325c97362b8b",
+			"name": "Create Organization in ROOT",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 817,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				817
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "383be2b5-03ac-44b7-88f4-f686d4309327",
+			"name": "GET Organization",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/06bc59f5-0da6-41b8-ab27-c9dfe34e29d9",
+			"time": 95,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				95
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "f61ef190-995d-4555-9a37-e2c946b01d14",
+			"name": "PATCH the created organization",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/06bc59f5-0da6-41b8-ab27-c9dfe34e29d9",
+			"time": 102,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				102
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "268a269d-1afb-4870-bcdc-86082c52a08b",
+			"name": "Create User in parent org",
+			"url": "https://localhost:9443/scim2/Users",
+			"time": 497,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				497
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "8a8e8cd8-3135-40df-a8d8-ae63412bf746",
+			"name": "Create sub org by new user without permission",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 59,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"POST request without proper permissions": true,
+				"Response includes error code for unauthorization": true
+			},
+			"testPassFailCounts": {
+				"POST request without proper permissions": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes error code for unauthorization": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				59
+			],
+			"allTests": [
+				{
+					"POST request without proper permissions": true,
+					"Response includes error code for unauthorization": true
+				}
+			]
+		},
+		{
+			"id": "74b62475-4a86-4a18-902e-4404fb34ecb4",
+			"name": "Assign org_admin role to new user over the parent org",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/06bc59f5-0da6-41b8-ab27-c9dfe34e29d9/roles",
+			"time": 123,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				123
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "f333bb1d-66bc-41e6-a035-6b92951fc3fc",
+			"name": "Create sub org by new user with permissions",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 87,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				87
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "9388c4d4-a8a6-4a94-b0a1-f62febe5c4e8",
+			"name": "Create a user in sub org by org creator",
+			"url": "https://localhost:9443/scim2/Users",
+			"time": 154,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				154
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "bd93c70c-bc6e-463a-b1c8-a93a0f3f6e47",
+			"name": "Get the User_1 in sub org by admin (doesn't have permission)",
+			"url": "https://localhost:9443/scim2/Users/378d6f4b-67e4-4c4f-98c4-dc2f104e586b",
+			"time": 64,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status code is 403- Unauthorized to view user": true
+			},
+			"testPassFailCounts": {
+				"Status code is 403- Unauthorized to view user": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				64
+			],
+			"allTests": [
+				{
+					"Status code is 403- Unauthorized to view user": true
+				}
+			]
+		},
+		{
+			"id": "f99f5e27-c71e-485a-9355-9857d2289ac9",
+			"name": "Get the User_1 in sub org by sub org creator (has permission)",
+			"url": "https://localhost:9443/scim2/Users/378d6f4b-67e4-4c4f-98c4-dc2f104e586b",
+			"time": 87,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				87
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "334ec7b7-080a-4022-92b4-9d425b12efce",
+			"name": "User_1 in Sub Org try to assign sub organization user mgt role to admin",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/d42276c4-18ac-4822-89d8-4642cfb0b6fa/roles",
+			"time": 17,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Status code is 403 - Unauthorized to view user": true
+			},
+			"testPassFailCounts": {
+				"Status code is 403 - Unauthorized to view user": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Status code is 403 - Unauthorized to view user": true
+				}
+			]
+		},
+		{
+			"id": "b1a13037-dc08-4576-8074-e8722b789654",
+			"name": "Sub Org creator try to assign sub organization user mgt role to admin",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/d42276c4-18ac-4822-89d8-4642cfb0b6fa/roles",
+			"time": 30,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response time is less than 200ms": true
+			},
+			"testPassFailCounts": {
+				"Response time is less than 200ms": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"Response time is less than 200ms": true
+				}
+			]
+		},
+		{
+			"id": "30143ee8-53ca-43e6-b482-c097f517fef2",
+			"name": "Get the User_1 in sub org by admin (has permission)",
+			"url": "https://localhost:9443/scim2/Users/378d6f4b-67e4-4c4f-98c4-dc2f104e586b",
+			"time": 100,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				100
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 4201,
+	"collection": {
+		"requests": [
+			{
+				"id": "751a6cd1-27b7-4432-b0e5-44ae2c62c67b",
+				"method": "GET"
+			},
+			{
+				"id": "e7c66954-ff32-4e26-819b-042600c9ba8a",
+				"method": "GET"
+			},
+			{
+				"id": "76f4095c-f15c-41c5-9171-89cd23e65c22",
+				"method": "GET"
+			},
+			{
+				"id": "f979aef5-cf3d-455e-8fe8-37770a52eb3b",
+				"method": "GET"
+			},
+			{
+				"id": "50f8b89d-65e4-4f6b-a916-87f393332ee8",
+				"method": "PUT"
+			},
+			{
+				"id": "17a3b007-c051-4ba0-aabb-ce353c52c653",
+				"method": "PUT"
+			},
+			{
+				"id": "d1d09e8a-fa5d-496e-b4b4-5ba6860ee5ac",
+				"method": "PUT"
+			},
+			{
+				"id": "cb9294cb-8fca-4780-9635-e800efff11b0",
+				"method": "PUT"
+			},
+			{
+				"id": "d37dca4b-1784-4b5b-a6b5-64aba6d0c98d",
+				"method": "PUT"
+			},
+			{
+				"id": "68a20610-6d82-4fa7-92f1-0001a6f13fa3",
+				"method": "PUT"
+			},
+			{
+				"id": "c4161c50-b122-4b12-be8e-325c97362b8b",
+				"method": "POST"
+			},
+			{
+				"id": "383be2b5-03ac-44b7-88f4-f686d4309327",
+				"method": "GET"
+			},
+			{
+				"id": "f61ef190-995d-4555-9a37-e2c946b01d14",
+				"method": "PATCH"
+			},
+			{
+				"id": "268a269d-1afb-4870-bcdc-86082c52a08b",
+				"method": "POST"
+			},
+			{
+				"id": "8a8e8cd8-3135-40df-a8d8-ae63412bf746",
+				"method": "POST"
+			},
+			{
+				"id": "74b62475-4a86-4a18-902e-4404fb34ecb4",
+				"method": "POST"
+			},
+			{
+				"id": "f333bb1d-66bc-41e6-a035-6b92951fc3fc",
+				"method": "POST"
+			},
+			{
+				"id": "9388c4d4-a8a6-4a94-b0a1-f62febe5c4e8",
+				"method": "POST"
+			},
+			{
+				"id": "bd93c70c-bc6e-463a-b1c8-a93a0f3f6e47",
+				"method": "GET"
+			},
+			{
+				"id": "f99f5e27-c71e-485a-9355-9857d2289ac9",
+				"method": "GET"
+			},
+			{
+				"id": "334ec7b7-080a-4022-92b4-9d425b12efce",
+				"method": "POST"
+			},
+			{
+				"id": "b1a13037-dc08-4576-8074-e8722b789654",
+				"method": "POST"
+			},
+			{
+				"id": "30143ee8-53ca-43e6-b482-c097f517fef2",
+				"method": "GET"
+			}
+		]
+	}
+}

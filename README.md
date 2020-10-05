@@ -6,3 +6,7 @@
 
 NOTE: These testcases are written to test organization management and and organization management related authorization functionality.
 Considered the primary userstore as the customized userstore to manage organizations.
+
+
+3. https://github.com/AnuradhaSK/Organization-Mgt-Postman-Test/blob/master/Organization-Management-Test.postman_test_run.json file contains the test results.
+In postman Navigate to File -> New Runner Window -> Import Runs and select the file.
