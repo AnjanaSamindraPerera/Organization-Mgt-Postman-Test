@@ -1,12 +1,14 @@
 # Organization-Mgt-Postman-Test
 
-1. Import https://github.com/AnuradhaSK/Organization-Mgt-Postman-Test/blob/master/Org-Mgt-Test.postman_environment.json  into postman and change the base_url and other initialized variables.
-2. Import https://github.com/AnuradhaSK/Organization-Mgt-Postman-Test/blob/master/Organization-Management-Test.postman_collection.json into postman and run the test collection.
-
-
-NOTE: These testcases are written to test organization management and and organization management related authorization functionality.
-Considered the primary userstore as the customized userstore to manage organizations.
-
-
-3. https://github.com/AnuradhaSK/Organization-Mgt-Postman-Test/blob/master/Organization-Management-Test.postman_test_run.json file contains the test results.
-In postman Navigate to `File -> New Runner Window -> Import Runs` and select the file.
+1. Download WSO2-IS 5.10.0 WUM updated pack fresh pack.
+2. Configure the WSO2-IS pack according to the requirement.
+3. Login to the management console and create the following INTERNAL roles.
+Organization_Administrator
+Organization_Viewer
+User_Administrator
+User_Viewer
+Role_Administrator
+Role_Viewer
+4. Download Postman. (https://www.postman.com/downloads/)
+5. Import Organization-Management-Test.postman_collection.json file (https://developer.ft.com/portal/docs-start-install-postman-and-import-request-collection)
+6. Run the test collection.

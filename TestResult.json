@@ -1,0 +1,2383 @@
+{
+	"id": "91e50028-bbe6-4ea9-904d-6a2988253053",
+	"name": "Organization-Management-Test",
+	"timestamp": "2020-11-08T15:57:50.903Z",
+	"collection_id": "713b01bd-60e1-4ba0-b1d3-eaffb76aebf1",
+	"folder_id": 0,
+	"environment_id": "7d39591a-e1e7-4bf1-80e6-e6ddd05e8921",
+	"totalPass": 110,
+	"totalFail": 5,
+	"results": [
+		{
+			"id": "751a6cd1-27b7-4432-b0e5-44ae2c62c67b",
+			"name": "GET admin user",
+			"url": "https://localhost:9443/scim2/Users?filter=username+eq+admin",
+			"time": 95,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				95
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "e7c66954-ff32-4e26-819b-042600c9ba8a",
+			"name": "GET  Organization_Administrator Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Organization_Administrator&domain=Internal",
+			"time": 42,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				42
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "eb58de20-52df-4ac9-9493-80f19386b514",
+			"name": "GET  Organization_Viewer Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Organization_Viewer&domain=Internal",
+			"time": 33,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "76f4095c-f15c-41c5-9171-89cd23e65c22",
+			"name": "GET  Role_Administrator Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Role_Administrator&domain=Internal",
+			"time": 44,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				44
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "f979aef5-cf3d-455e-8fe8-37770a52eb3b",
+			"name": "GET  User_Administrator Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+User_Administrator&domain=Internal",
+			"time": 31,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "d01a2422-c44b-4217-91f9-c8744f1f1a0e",
+			"name": "GET  User_Viewer Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+User_Viewer&domain=Internal",
+			"time": 34,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				34
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "50f8b89d-65e4-4f6b-a916-87f393332ee8",
+			"name": "Assign permissions to the Organization_Administrator role",
+			"url": "https://localhost:9443/scim2/Groups/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/permissions",
+			"time": 105,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				105
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "c38bb7f8-b7d4-4c1a-9e6c-4bd3503faa72",
+			"name": "Assign permissions to the Organization_Viewer role",
+			"url": "https://localhost:9443/scim2/Groups/e444cd2b-1149-4a54-bc42-084f819e89a1/permissions",
+			"time": 134,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				134
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "17a3b007-c051-4ba0-aabb-ce353c52c653",
+			"name": "Assign permissions to the Role_Administrator role",
+			"url": "https://localhost:9443/scim2/Groups/ada47169-436c-4ab9-a8ef-c06aa641edcd/permissions",
+			"time": 123,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				123
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "d1d09e8a-fa5d-496e-b4b4-5ba6860ee5ac",
+			"name": "Assign permissions to the User_Administrator role",
+			"url": "https://localhost:9443/scim2/Groups/7d4e3ac9-da93-4b7a-a2d0-84bb6c01dc25/permissions",
+			"time": 97,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				97
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "47f89ec5-86b4-493d-9bac-c01630f0676a",
+			"name": "Assign permissions to the User_Viewer role",
+			"url": "https://localhost:9443/scim2/Groups/25b2a422-f698-48bd-8cea-4cc27848eaaf/permissions",
+			"time": 108,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				108
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "cb9294cb-8fca-4780-9635-e800efff11b0",
+			"name": "Assign INTERNAL/Organization_Administrator role to admin",
+			"url": "https://localhost:9443/scim2/Groups/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63",
+			"time": 56,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				56
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "eedd5acc-ad76-4994-8f88-3c87d39fa15c",
+			"name": "Assign INTERNAL/Organization_Viewer role to admin",
+			"url": "https://localhost:9443/scim2/Groups/e444cd2b-1149-4a54-bc42-084f819e89a1",
+			"time": 56,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				56
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "d37dca4b-1784-4b5b-a6b5-64aba6d0c98d",
+			"name": "Assign internal Role - INTERNAL/Role_Administrator to admin",
+			"url": "https://localhost:9443/scim2/Groups/ada47169-436c-4ab9-a8ef-c06aa641edcd",
+			"time": 54,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				54
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "68a20610-6d82-4fa7-92f1-0001a6f13fa3",
+			"name": "Assign internal Role - INTERNAL/User_Administrator to admin",
+			"url": "https://localhost:9443/scim2/Groups/7d4e3ac9-da93-4b7a-a2d0-84bb6c01dc25",
+			"time": 56,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				56
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "23e09e94-2ae6-4521-b2bb-0944d237aba9",
+			"name": "Assign internal Role - INTERNAL/User_Viewer to admin",
+			"url": "https://localhost:9443/scim2/Groups/25b2a422-f698-48bd-8cea-4cc27848eaaf",
+			"time": 46,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				46
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "24fe3aea-9b17-4718-b88c-4df0c890a4b2",
+			"name": "List all orgs in the fresh pack - only ROOT should be returned",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations",
+			"time": 59,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Return non-empty array": true,
+				"Response includes root organization": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return non-empty array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes root organization": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				59
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Return non-empty array": true,
+					"Response includes root organization": true
+				}
+			]
+		},
+		{
+			"id": "c91bcf8b-cde4-430a-8255-113d544ed2d2",
+			"name": "Assign Organization_Administrator role to admin user against ROOT",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/f7cd7eb3-d71c-464a-8ff6-811485e564fc/roles",
+			"time": 129,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				129
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "c4161c50-b122-4b12-be8e-325c97362b8b",
+			"name": "Create Organization under ROOT",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 111,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				111
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "76b6bbbc-055b-42f0-a4fd-11cc5f10a89a",
+			"name": "Assign User_Administrator role to admin user against ROOT",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/f7cd7eb3-d71c-464a-8ff6-811485e564fc/roles",
+			"time": 59,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				59
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "268a269d-1afb-4870-bcdc-86082c52a08b",
+			"name": "Create User1(smith) in parent org",
+			"url": "https://localhost:9443/scim2/Users",
+			"time": 282,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				282
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "9fc5ee52-c95d-4605-8bbe-75543d01cc80",
+			"name": "Create Organization under ROOT by unauthorized user(smith)",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 71,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Forbidden POST request to create an organization": true
+			},
+			"testPassFailCounts": {
+				"Forbidden POST request to create an organization": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				71
+			],
+			"allTests": [
+				{
+					"Forbidden POST request to create an organization": true
+				}
+			]
+		},
+		{
+			"id": "f9693990-9185-440c-9c8e-58d72200d11b",
+			"name": "Assign Organization_Administrator role to new user(smith) against the ROOT with include suborgs",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a/roles",
+			"time": 29,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				29
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "22061d37-3ed2-4a8f-93aa-66d7817ee2ce",
+			"name": "Create Organization under Parent by created user(smith) - Since he got org creation permission against root with include sub-orgs tihs request should be passed",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 82,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				82
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "49b8fadb-3139-46f2-a335-81303a9994b1",
+			"name": "Create Organization under ROOT with an existing name",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 35,
+			"responseCode": {
+				"code": 409,
+				"name": "Conflict"
+			},
+			"tests": {
+				"Conflicting POST request": true
+			},
+			"testPassFailCounts": {
+				"Conflicting POST request": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				35
+			],
+			"allTests": [
+				{
+					"Conflicting POST request": true
+				}
+			]
+		},
+		{
+			"id": "bfc39924-bbbf-46f9-a3fb-5a39e39afb0f",
+			"name": "Create Organization which name contains special charcaters",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 79,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Succesfull POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Succesfull POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				79
+			],
+			"allTests": [
+				{
+					"Succesfull POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "948fa4d2-3015-48a8-b683-4682d53407f0",
+			"name": "Create Organization which name contains space",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 51,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Succesfull POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Succesfull POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				51
+			],
+			"allTests": [
+				{
+					"Succesfull POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "e71f68fb-847f-4b2f-a16e-18f6dc88a14e",
+			"name": "Create Organization without name",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 28,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Bad request on organization creation": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Bad request on organization creation": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Bad request on organization creation": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "b45455ec-1527-42ab-bf91-2e67d304b149",
+			"name": "Create Organization without a displayName",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 78,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Bad request on organization creation": false,
+				"Response includes specified elements": false
+			},
+			"testPassFailCounts": {
+				"Bad request on organization creation": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Response includes specified elements": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				78
+			],
+			"allTests": [
+				{
+					"Bad request on organization creation": false,
+					"Response includes specified elements": false
+				}
+			]
+		},
+		{
+			"id": "3e72c6aa-98e7-4001-91af-a4be6706555f",
+			"name": "Create Organization without Type attribute",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 81,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Bad request on organization creation": false,
+				"Response includes specified elements": false
+			},
+			"testPassFailCounts": {
+				"Bad request on organization creation": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Response includes specified elements": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				81
+			],
+			"allTests": [
+				{
+					"Bad request on organization creation": false,
+					"Response includes specified elements": false
+				}
+			]
+		},
+		{
+			"id": "c8a5dfa4-ec66-4817-a15c-349487c055fa",
+			"name": "Create User2 in parent org",
+			"url": "https://localhost:9443/scim2/Users",
+			"time": 189,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				189
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "383be2b5-03ac-44b7-88f4-f686d4309327",
+			"name": "GET Organization by id",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
+			"time": 38,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				38
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "3b8308f0-e5df-4c37-9db5-5edf5c424c0c",
+			"name": "GET Organization by id by unauthorized user(User2 - kim)",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
+			"time": 22,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"View organization by unauthorized user": true
+			},
+			"testPassFailCounts": {
+				"View organization by unauthorized user": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"View organization by unauthorized user": true
+				}
+			]
+		},
+		{
+			"id": "1d4b189e-73ea-4e60-b7b9-782064fdb0bb",
+			"name": "List all organization by unauthorized user(User2 - kim)",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations",
+			"time": 73,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"View organization by unauthorized user": true
+			},
+			"testPassFailCounts": {
+				"View organization by unauthorized user": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				73
+			],
+			"allTests": [
+				{
+					"View organization by unauthorized user": true
+				}
+			]
+		},
+		{
+			"id": "c08dce7e-2db0-47ea-a37b-aef659f4cb57",
+			"name": "Assign Organization_Viewer role to user2(kim) against subOrg1-(include sub-org false)",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
+			"time": 27,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				27
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "f103f53b-62be-4f97-aab8-c3f2bace0bb3",
+			"name": "List all organization by user(User2 - kim)  - Return only the orgs which he has permission. Should return only subOrg1",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations",
+			"time": 146,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes only one organization": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes only one organization": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				146
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes only one organization": true
+				}
+			]
+		},
+		{
+			"id": "3bad5c1f-d5ba-47ab-90c9-23f75a8a1bad",
+			"name": "Get Organizations with Filter by Orgname order by DESC",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortBy=name&sortOrder=DESC",
+			"time": 70,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Response is an non-empty array": true,
+				"Orgnames are in descending order": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an non-empty array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Orgnames are in descending order": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				70
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Response is an non-empty array": true,
+					"Orgnames are in descending order": true
+				}
+			]
+		},
+		{
+			"id": "42539f39-45ac-4305-a43f-ed7de430271b",
+			"name": "Get Organizations with Filter by Orgname order by ASC",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortBy=name&sortOrder=ASC",
+			"time": 81,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Response is an non-empty array": true,
+				"Orgnames are in ascending order": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an non-empty array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Orgnames are in ascending order": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				81
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Response is an non-empty array": true,
+					"Orgnames are in ascending order": true
+				}
+			]
+		},
+		{
+			"id": "8d2f3a4d-e722-49ae-9061-cbdf514887cf",
+			"name": "Get Organizations with Filter without sortBy Param order by ASC",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortOrder=ASC",
+			"time": 34,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Response is an non-empty array": true,
+				"Orgnames are in ascending order": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an non-empty array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Orgnames are in ascending order": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				34
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Response is an non-empty array": true,
+					"Orgnames are in ascending order": true
+				}
+			]
+		},
+		{
+			"id": "6f55fdd2-ca92-4c46-9b8c-7c3767075d61",
+			"name": "Get Organizations with Filter by name - case insensitive search",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27WSO2%27",
+			"time": 115,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Uppercase search results should be returned ": true,
+				"Verify organizations list has returned": true,
+				"lowercase search results should be returned": true,
+				"Response is an non-empty array": true
+			},
+			"testPassFailCounts": {
+				"Uppercase search results should be returned ": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"lowercase search results should be returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an non-empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				115
+			],
+			"allTests": [
+				{
+					"Uppercase search results should be returned ": true,
+					"Verify organizations list has returned": true,
+					"lowercase search results should be returned": true,
+					"Response is an non-empty array": true
+				}
+			]
+		},
+		{
+			"id": "1b2f291e-ede7-4a84-9acb-bcf4f26da473",
+			"name": "Get Organizations with Filter by name eq \"\"",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27615ORG%27",
+			"time": 29,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				29
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true
+				}
+			]
+		},
+		{
+			"id": "157ba864-0a95-48fb-ad2a-b003a8a470b8",
+			"name": "Get Organizations with Filter by a name with spaces",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27wso2%20org%27",
+			"time": 52,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				52
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true
+				}
+			]
+		},
+		{
+			"id": "48eaf0b6-85f4-4010-bfff-ec6f0bb8fd9c",
+			"name": "Get Organizations with Filter by AND operator - no results",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27GAYANIORG12%27and%20attributeValue%20eq%20%270000%27",
+			"time": 91,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Return empty array": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				91
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Return empty array": true
+				}
+			]
+		},
+		{
+			"id": "6d85b567-3f93-459a-a62f-f42b93e4d56c",
+			"name": "Get Organizations with Filter by AND operaror - have result",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27wso2%27and%20displayName%20eq%20%27WSO2%27",
+			"time": 50,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Return non-empty array": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return non-empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				50
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Return non-empty array": true
+				}
+			]
+		},
+		{
+			"id": "e1c57744-98cd-4dd7-99b6-f82109c23a9e",
+			"name": "Get Organizations with Filter by Type=Partner",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=attributeKey%20eq%20%27Type%27%20and%20attributeValue%20eq%20%27Partner%27",
+			"time": 70,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Return non-empty array": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return non-empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				70
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Return non-empty array": true
+				}
+			]
+		},
+		{
+			"id": "19a4024d-414c-4452-8ea3-dd9819fa8106",
+			"name": "Get Organization which removed exp attribute",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortBy=name&sortOrder=DESC",
+			"time": 23,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true
+				}
+			]
+		},
+		{
+			"id": "7c6eaff7-482c-4d2a-b317-6a1744484a73",
+			"name": "Get Organizations with Filter by type=Partner and status=Active",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=status%20eq%20%27ACTIVE%27and%20attributeValue%20eq%20%27Partner%27",
+			"time": 33,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Return non-empty array": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return non-empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				33
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Return non-empty array": true
+				}
+			]
+		},
+		{
+			"id": "b4314313-d6a7-4e16-9541-34b0382c1ad2",
+			"name": "Get Organizations with Filter by OR operator",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27wso2%27or%20attributeValue%20eq%20%27BYOXFED%27",
+			"time": 117,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Return non-empty array": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return non-empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				117
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Return non-empty array": true
+				}
+			]
+		},
+		{
+			"id": "f61ef190-995d-4555-9a37-e2c946b01d14",
+			"name": "PATCH the Parent organization",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
+			"time": 60,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				60
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
+			"id": "942a86bb-1374-4709-aeed-5b89e1f4ab2c",
+			"name": "Get Org to validate PATCH operations",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
+			"time": 22,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Each object should have 2 keys": true,
+				"Validate the patch operation has successfully done.": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each object should have 2 keys": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Validate the patch operation has successfully done.": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				22
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Each object should have 2 keys": true,
+					"Validate the patch operation has successfully done.": true
+				}
+			]
+		},
+		{
+			"id": "cbfe93c2-b9c4-462e-9466-947401e79d85",
+			"name": "PATCH the parent organization - use invalid payload(add operation without a path)",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
+			"time": 63,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Bad Request": false
+			},
+			"testPassFailCounts": {
+				"Bad Request": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				63
+			],
+			"allTests": [
+				{
+					"Bad Request": false
+				}
+			]
+		},
+		{
+			"id": "c0732403-501d-4b08-bedb-f5e68d4af696",
+			"name": "GET Children organizations of ParentOrg by admin",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a/children",
+			"time": 113,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes org ids": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes org ids": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				113
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes org ids": true
+				}
+			]
+		},
+		{
+			"id": "45d5be8b-6daf-4808-b6ff-de08c2d4f88f",
+			"name": "Assign Organization_Viewer role to admin user against SubOrg1",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
+			"time": 75,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				75
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "5aede737-cbd1-4e98-82aa-60dd6cd5fb80",
+			"name": "GET Children organizations of ParentOrg by admin - since subOrg1 got permission, the output should be increased by one",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a/children",
+			"time": 42,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes org ids": true,
+				"Each item in the array should be string": true,
+				"Only children organizations which have org view permission will be returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes org ids": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each item in the array should be string": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Only children organizations which have org view permission will be returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				42
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes org ids": true,
+					"Each item in the array should be string": true,
+					"Only children organizations which have org view permission will be returned": true
+				}
+			]
+		},
+		{
+			"id": "e1519f9f-c0f7-495b-a782-c4945b7cd137",
+			"name": "Assign User_administrator role to admin user against SubOrg1",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
+			"time": 26,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "b2e0f6ad-de18-48a6-af4e-ab8d4b9cfeb1",
+			"name": "View members of a role",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/f7cd7eb3-d71c-464a-8ff6-811485e564fc/roles/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/users",
+			"time": 308,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes member objects": true,
+				"Each item in the array should be objects, and only schemas and id will be returned": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes member objects": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each item in the array should be objects, and only schemas and id will be returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				308
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes member objects": true,
+					"Each item in the array should be objects, and only schemas and id will be returned": true
+				}
+			]
+		},
+		{
+			"id": "6fec6968-a0b4-4bea-be0d-6e943ec27ca1",
+			"name": "View members of a role - with attributes",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/f7cd7eb3-d71c-464a-8ff6-811485e564fc/roles/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/users?attributes=name,urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.organization",
+			"time": 100,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes member objects": true,
+				"Each item in the array should be objects": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes member objects": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Each item in the array should be objects": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				100
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes member objects": true,
+					"Each item in the array should be objects": true
+				}
+			]
+		},
+		{
+			"id": "4222da56-215c-4203-83e3-e83172fe0f0c",
+			"name": "Assign Role_Administrator role to admin user against SubOrg1",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
+			"time": 31,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				31
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "4c428d85-a6b1-41d7-a24d-3832993552f3",
+			"name": "DELETE Organization_Viewer role from User2(kim) from SubOrg1",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles/e444cd2b-1149-4a54-bc42-084f819e89a1/users/4e4e19da-c30e-491b-a0d8-41b43d2b0a59",
+			"time": 46,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				46
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
+			"id": "9388c4d4-a8a6-4a94-b0a1-f62febe5c4e8",
+			"name": "Create a user3 in SubOrg",
+			"url": "https://localhost:9443/scim2/Users",
+			"time": 132,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Successful POST request": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Successful POST request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				132
+			],
+			"allTests": [
+				{
+					"Successful POST request": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "75d6a391-7c72-45c1-9635-29c94407be87",
+			"name": "DELETE subOrg1 by admin - unauthorized request",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
+			"time": 54,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Unauthorized organization deletion - Status code is 403": true
+			},
+			"testPassFailCounts": {
+				"Unauthorized organization deletion - Status code is 403": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				54
+			],
+			"allTests": [
+				{
+					"Unauthorized organization deletion - Status code is 403": true
+				}
+			]
+		},
+		{
+			"id": "19f4a319-f844-4431-8f64-c8bd53bc5bbf",
+			"name": "Assign Organization_Administrator role to admin user against SubOrg1 Copy",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
+			"time": 26,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				26
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "9a6b174d-f65a-4f8e-b80f-a038e2d4b553",
+			"name": "DELETE subOrg1 by admin - authorized. but org is not in disable state",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
+			"time": 55,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Organization is not in disable state": true
+			},
+			"testPassFailCounts": {
+				"Organization is not in disable state": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				55
+			],
+			"allTests": [
+				{
+					"Organization is not in disable state": true
+				}
+			]
+		},
+		{
+			"id": "ee667a0a-5808-4c76-9381-9d4f6f61444c",
+			"name": "PATCH the SubOrg status to disable",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
+			"time": 109,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				109
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
+			"id": "1ec3ac1a-d605-4981-b077-f0fcb868a2f1",
+			"name": "DELETE subOrg1 by admin - request authorized. subOrg1 status is disabled. but habe users",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
+			"time": 44,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Deletion failed because organization has usres even though the status is disabled": true
+			},
+			"testPassFailCounts": {
+				"Deletion failed because organization has usres even though the status is disabled": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				44
+			],
+			"allTests": [
+				{
+					"Deletion failed because organization has usres even though the status is disabled": true
+				}
+			]
+		},
+		{
+			"id": "8c916a44-650b-4226-8375-7f5f615faef2",
+			"name": "DELETE user3 in SubOrg1",
+			"url": "https://localhost:9443/scim2/Users/f82f1b34-16c9-46b8-a49d-9a61975906a3",
+			"time": 150,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Successful user deletion": true
+			},
+			"testPassFailCounts": {
+				"Successful user deletion": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				150
+			],
+			"allTests": [
+				{
+					"Successful user deletion": true
+				}
+			]
+		},
+		{
+			"id": "cbb26688-7cc0-4099-92a7-4d37a2668ccf",
+			"name": "DELETE subOrg1 by admin - (successful)request authorized. subOrg1 status is disabled.  no usres",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
+			"time": 78,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Delete the organization successfully": true
+			},
+			"testPassFailCounts": {
+				"Delete the organization successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				78
+			],
+			"allTests": [
+				{
+					"Delete the organization successfully": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 5082,
+	"collection": {
+		"requests": [
+			{
+				"id": "751a6cd1-27b7-4432-b0e5-44ae2c62c67b",
+				"method": "GET"
+			},
+			{
+				"id": "e7c66954-ff32-4e26-819b-042600c9ba8a",
+				"method": "GET"
+			},
+			{
+				"id": "eb58de20-52df-4ac9-9493-80f19386b514",
+				"method": "GET"
+			},
+			{
+				"id": "76f4095c-f15c-41c5-9171-89cd23e65c22",
+				"method": "GET"
+			},
+			{
+				"id": "f979aef5-cf3d-455e-8fe8-37770a52eb3b",
+				"method": "GET"
+			},
+			{
+				"id": "d01a2422-c44b-4217-91f9-c8744f1f1a0e",
+				"method": "GET"
+			},
+			{
+				"id": "50f8b89d-65e4-4f6b-a916-87f393332ee8",
+				"method": "PUT"
+			},
+			{
+				"id": "c38bb7f8-b7d4-4c1a-9e6c-4bd3503faa72",
+				"method": "PUT"
+			},
+			{
+				"id": "17a3b007-c051-4ba0-aabb-ce353c52c653",
+				"method": "PUT"
+			},
+			{
+				"id": "d1d09e8a-fa5d-496e-b4b4-5ba6860ee5ac",
+				"method": "PUT"
+			},
+			{
+				"id": "47f89ec5-86b4-493d-9bac-c01630f0676a",
+				"method": "PUT"
+			},
+			{
+				"id": "cb9294cb-8fca-4780-9635-e800efff11b0",
+				"method": "PUT"
+			},
+			{
+				"id": "eedd5acc-ad76-4994-8f88-3c87d39fa15c",
+				"method": "PUT"
+			},
+			{
+				"id": "d37dca4b-1784-4b5b-a6b5-64aba6d0c98d",
+				"method": "PUT"
+			},
+			{
+				"id": "68a20610-6d82-4fa7-92f1-0001a6f13fa3",
+				"method": "PUT"
+			},
+			{
+				"id": "23e09e94-2ae6-4521-b2bb-0944d237aba9",
+				"method": "PUT"
+			},
+			{
+				"id": "24fe3aea-9b17-4718-b88c-4df0c890a4b2",
+				"method": "GET"
+			},
+			{
+				"id": "c91bcf8b-cde4-430a-8255-113d544ed2d2",
+				"method": "POST"
+			},
+			{
+				"id": "c4161c50-b122-4b12-be8e-325c97362b8b",
+				"method": "POST"
+			},
+			{
+				"id": "76b6bbbc-055b-42f0-a4fd-11cc5f10a89a",
+				"method": "POST"
+			},
+			{
+				"id": "268a269d-1afb-4870-bcdc-86082c52a08b",
+				"method": "POST"
+			},
+			{
+				"id": "9fc5ee52-c95d-4605-8bbe-75543d01cc80",
+				"method": "POST"
+			},
+			{
+				"id": "f9693990-9185-440c-9c8e-58d72200d11b",
+				"method": "POST"
+			},
+			{
+				"id": "22061d37-3ed2-4a8f-93aa-66d7817ee2ce",
+				"method": "POST"
+			},
+			{
+				"id": "49b8fadb-3139-46f2-a335-81303a9994b1",
+				"method": "POST"
+			},
+			{
+				"id": "bfc39924-bbbf-46f9-a3fb-5a39e39afb0f",
+				"method": "POST"
+			},
+			{
+				"id": "948fa4d2-3015-48a8-b683-4682d53407f0",
+				"method": "POST"
+			},
+			{
+				"id": "e71f68fb-847f-4b2f-a16e-18f6dc88a14e",
+				"method": "POST"
+			},
+			{
+				"id": "b45455ec-1527-42ab-bf91-2e67d304b149",
+				"method": "POST"
+			},
+			{
+				"id": "3e72c6aa-98e7-4001-91af-a4be6706555f",
+				"method": "POST"
+			},
+			{
+				"id": "c8a5dfa4-ec66-4817-a15c-349487c055fa",
+				"method": "POST"
+			},
+			{
+				"id": "383be2b5-03ac-44b7-88f4-f686d4309327",
+				"method": "GET"
+			},
+			{
+				"id": "3b8308f0-e5df-4c37-9db5-5edf5c424c0c",
+				"method": "GET"
+			},
+			{
+				"id": "1d4b189e-73ea-4e60-b7b9-782064fdb0bb",
+				"method": "GET"
+			},
+			{
+				"id": "c08dce7e-2db0-47ea-a37b-aef659f4cb57",
+				"method": "POST"
+			},
+			{
+				"id": "f103f53b-62be-4f97-aab8-c3f2bace0bb3",
+				"method": "GET"
+			},
+			{
+				"id": "3bad5c1f-d5ba-47ab-90c9-23f75a8a1bad",
+				"method": "GET"
+			},
+			{
+				"id": "42539f39-45ac-4305-a43f-ed7de430271b",
+				"method": "GET"
+			},
+			{
+				"id": "8d2f3a4d-e722-49ae-9061-cbdf514887cf",
+				"method": "GET"
+			},
+			{
+				"id": "6f55fdd2-ca92-4c46-9b8c-7c3767075d61",
+				"method": "GET"
+			},
+			{
+				"id": "1b2f291e-ede7-4a84-9acb-bcf4f26da473",
+				"method": "GET"
+			},
+			{
+				"id": "157ba864-0a95-48fb-ad2a-b003a8a470b8",
+				"method": "GET"
+			},
+			{
+				"id": "48eaf0b6-85f4-4010-bfff-ec6f0bb8fd9c",
+				"method": "GET"
+			},
+			{
+				"id": "6d85b567-3f93-459a-a62f-f42b93e4d56c",
+				"method": "GET"
+			},
+			{
+				"id": "e1c57744-98cd-4dd7-99b6-f82109c23a9e",
+				"method": "GET"
+			},
+			{
+				"id": "19a4024d-414c-4452-8ea3-dd9819fa8106",
+				"method": "GET"
+			},
+			{
+				"id": "7c6eaff7-482c-4d2a-b317-6a1744484a73",
+				"method": "GET"
+			},
+			{
+				"id": "b4314313-d6a7-4e16-9541-34b0382c1ad2",
+				"method": "GET"
+			},
+			{
+				"id": "f61ef190-995d-4555-9a37-e2c946b01d14",
+				"method": "PATCH"
+			},
+			{
+				"id": "942a86bb-1374-4709-aeed-5b89e1f4ab2c",
+				"method": "GET"
+			},
+			{
+				"id": "cbfe93c2-b9c4-462e-9466-947401e79d85",
+				"method": "PATCH"
+			},
+			{
+				"id": "c0732403-501d-4b08-bedb-f5e68d4af696",
+				"method": "GET"
+			},
+			{
+				"id": "45d5be8b-6daf-4808-b6ff-de08c2d4f88f",
+				"method": "POST"
+			},
+			{
+				"id": "5aede737-cbd1-4e98-82aa-60dd6cd5fb80",
+				"method": "GET"
+			},
+			{
+				"id": "e1519f9f-c0f7-495b-a782-c4945b7cd137",
+				"method": "POST"
+			},
+			{
+				"id": "b2e0f6ad-de18-48a6-af4e-ab8d4b9cfeb1",
+				"method": "GET"
+			},
+			{
+				"id": "6fec6968-a0b4-4bea-be0d-6e943ec27ca1",
+				"method": "GET"
+			},
+			{
+				"id": "4222da56-215c-4203-83e3-e83172fe0f0c",
+				"method": "POST"
+			},
+			{
+				"id": "4c428d85-a6b1-41d7-a24d-3832993552f3",
+				"method": "DELETE"
+			},
+			{
+				"id": "9388c4d4-a8a6-4a94-b0a1-f62febe5c4e8",
+				"method": "POST"
+			},
+			{
+				"id": "75d6a391-7c72-45c1-9635-29c94407be87",
+				"method": "DELETE"
+			},
+			{
+				"id": "19f4a319-f844-4431-8f64-c8bd53bc5bbf",
+				"method": "POST"
+			},
+			{
+				"id": "9a6b174d-f65a-4f8e-b80f-a038e2d4b553",
+				"method": "DELETE"
+			},
+			{
+				"id": "ee667a0a-5808-4c76-9381-9d4f6f61444c",
+				"method": "PATCH"
+			},
+			{
+				"id": "1ec3ac1a-d605-4981-b077-f0fcb868a2f1",
+				"method": "DELETE"
+			},
+			{
+				"id": "8c916a44-650b-4226-8375-7f5f615faef2",
+				"method": "DELETE"
+			},
+			{
+				"id": "cbb26688-7cc0-4099-92a7-4d37a2668ccf",
+				"method": "DELETE"
+			}
+		]
+	}
+}
