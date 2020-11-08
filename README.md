@@ -5,12 +5,12 @@
 2. Configure the WSO2-IS pack according to the requirement.
 
 3. Login to the management console and create the following INTERNAL roles.
-    - Organization_Administrator
-    - Organization_Viewer
-    - User_Administrator
-    - User_Viewer
-    - Role_Administrator
-    - Role_Viewer
+    - `Organization_Administrator`
+    - `Organization_Viewer`
+    - `User_Administrator`
+    - `User_Viewer`
+    - `Role_Administrator`
+    - `Role_Viewer`
     
 4. Download Postman. (https://www.postman.com/downloads/)
 
