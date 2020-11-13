@@ -6,149 +6,860 @@
 	},
 	"item": [
 		{
-			"name": "GET admin user",
-			"event": [
+			"name": "Pre-requisite",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "c5c7e64a-d1b1-499c-80fe-a1e57fc502f4",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"let jsonData = pm.response.json();",
-							"pm.environment.set(\"adminId\", jsonData.Resources[0].id);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "d07b086e-edd6-415a-ba86-dae26da81a1c",
-						"exec": [
-							"let admin_username = 'admin'",
-							"let admin_password = 'admin'",
-							"let baseurl = 'https://localhost:9443'",
-							"pm.environment.set('admin_username',admin_username)",
-							"pm.environment.set('admin_password',admin_password)",
-							"pm.environment.set('baseurl',baseurl)",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
+					"name": "GET admin user",
+					"event": [
 						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"id": "c5c7e64a-d1b1-499c-80fe-a1e57fc502f4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"adminId\", jsonData.Resources[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
 						},
 						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
+							"listen": "prerequest",
+							"script": {
+								"id": "d07b086e-edd6-415a-ba86-dae26da81a1c",
+								"exec": [
+									"let admin_username = 'admin'",
+									"let admin_password = 'admin'",
+									"let baseurl = 'https://localhost:9443'",
+									"pm.environment.set('admin_username',admin_username)",
+									"pm.environment.set('admin_password',admin_password)",
+									"pm.environment.set('baseurl',baseurl)",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Users?filter=username+eq+{{admin_username}}",
-					"host": [
-						"{{baseurl}}"
 					],
-					"path": [
-						"scim2",
-						"Users"
-					],
-					"query": [
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Users?filter=username+eq+{{admin_username}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Users"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "username+eq+{{admin_username}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET  User_Administrator Role Id",
+					"event": [
 						{
-							"key": "filter",
-							"value": "username+eq+{{admin_username}}"
+							"listen": "test",
+							"script": {
+								"id": "87c74156-efb2-4cd9-8e0b-2b60c4151911",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"UserAdminRoleId\", jsonData.Resources[0].id);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "0bf0323e-29f9-4209-a011-23f4d7c20aad",
+								"exec": [
+									"let UserAdminRoleName = 'User_Administrator'",
+									"pm.environment.set('UserAdminRoleName',UserAdminRoleName)"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{UserAdminRoleName}}&domain=Internal",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "displayName+eq+{{UserAdminRoleName}}"
+								},
+								{
+									"key": "domain",
+									"value": "Internal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET  Role_Administrator Role Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "310c746d-298b-4b43-bfe0-f207e313dc35",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"RoleAdminRoleId\", jsonData.Resources[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8e40a082-042a-4ad3-b467-3ec3142d8bf0",
+								"exec": [
+									"let RoleAdminRoleName = 'Role_Administrator'",
+									"pm.environment.set('RoleAdminRoleName',RoleAdminRoleName)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{RoleAdminRoleName}}&domain=Internal",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "displayName+eq+{{RoleAdminRoleName}}"
+								},
+								{
+									"key": "domain",
+									"value": "Internal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET  Organization_Administrator Role Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "50ac05de-9ac8-4432-961d-48127c43195b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"OrgAdminRoleId\", jsonData.Resources[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "dc9df31c-13cc-451c-8df8-2bae5d122232",
+								"exec": [
+									"let OrgAdminRoleName = 'Organization_Administrator'",
+									"pm.environment.set('OrgAdminRoleName',OrgAdminRoleName)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{OrgAdminRoleName}}&domain=Internal",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "displayName+eq+{{OrgAdminRoleName}}"
+								},
+								{
+									"key": "domain",
+									"value": "Internal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET  Organization_Viewer Role Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0f72b932-59f7-4a9c-a89e-0dcbcfb6beb6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"OrgViewerRoleId\", jsonData.Resources[0].id);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d0781de1-7448-41f5-8601-996afe70fd59",
+								"exec": [
+									"let OrgViewerRoleName = 'Organization_Viewer'",
+									"pm.environment.set('OrgViewerRoleName',OrgViewerRoleName)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{OrgViewerRoleName}}&domain=Internal",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "displayName+eq+{{OrgViewerRoleName}}"
+								},
+								{
+									"key": "domain",
+									"value": "Internal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET  User_Viewer Role Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a33813b-bfdd-45fe-9f70-ac484cd566e0",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"UserViewerRoleId\", jsonData.Resources[0].id);",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3ad92c0e-957e-4d8b-8e5a-2fe915231f31",
+								"exec": [
+									"let UserViewerRoleName = 'User_Viewer'",
+									"pm.environment.set('UserViewerRoleName',UserViewerRoleName)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{UserViewerRoleName}}&domain=Internal",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups"
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "displayName+eq+{{UserViewerRoleName}}"
+								},
+								{
+									"key": "domain",
+									"value": "Internal"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign permissions to the User_Administrator role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7400a812-d9d7-4dbb-8271-12ebd9acb55b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes specified elements\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response).to.have.instanceOf(Array);",
+									"    ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[ \n\"/permission/admin/manage/identity/usermgt\",\n\"/permission/admin/manage/identity/organizationmgt/view\",\n\"/permission/admin/manage/identity/rolemgt/view\",\n\"/permission/admin/manage/identity/userrolemgt/view\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups/{{UserAdminRoleId}}/permissions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups",
+								"{{UserAdminRoleId}}",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign permissions to the Role_Administrator role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "68da1fa0-1559-4f24-9687-0a81b062ca61",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes specified elements\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response).to.have.instanceOf(Array);",
+									"    ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[ \n \"/permission/admin/manage/identity/rolemgt\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups/{{RoleAdminRoleId}}/permissions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups",
+								"{{RoleAdminRoleId}}",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign permissions to the Organization_Administrator role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "846e389d-595d-4e2e-87e2-26146aecd160",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes specified elements\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response).to.have.instanceOf(Array);",
+									"    ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[ \n\"/permission/admin/manage/identity/usermgt/view\",\n\"/permission/admin/manage/identity/organizationmgt/create\",\n\"/permission/admin/manage/identity/organizationmgt/view\",\n\"/permission/admin/manage/identity/organizationmgt/update\",\n\"/permission/admin/manage/identity/organizationmgt/delete\",\n\"/permission/admin/manage/identity/rolemgt/view\",\n\"/permission/admin/manage/identity/userrolemgt/view\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups/{{OrgAdminRoleId}}/permissions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups",
+								"{{OrgAdminRoleId}}",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign permissions to the Organization_Viewer role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9158654c-a277-42f1-a5cf-3bfbd8531d3f",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes specified elements\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response).to.have.instanceOf(Array);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[ \n\"/permission/admin/manage/identity/usermgt/view\",\n\"/permission/admin/manage/identity/organizationmgt/view\",\n\"/permission/admin/manage/identity/rolemgt/view\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups/{{OrgViewerRoleId}}/permissions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups",
+								"{{OrgViewerRoleId}}",
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign permissions to the User_Viewer role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "babcd0f1-e107-4766-9ed4-b43565997bc6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes specified elements\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response).to.have.instanceOf(Array);",
+									"    ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[ \n\"/permission/admin/manage/identity/organizationmgt/view\",\n\"/permission/admin/manage/identity/rolemgt/view\",\n\"/permission/admin/manage/identity/userrolemgt/view\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups/{{UserViewerRoleId}}/permissions",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups",
+								"{{UserViewerRoleId}}",
+								"permissions"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
-			"name": "GET  Organization_Administrator Role Id",
+			"name": "List displayNames of Internal Roles",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "50ac05de-9ac8-4432-961d-48127c43195b",
+						"id": "11eddba8-136f-473b-b7ce-531899110e38",
 						"exec": [
+							"let response = pm.response.json();",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"let jsonData = pm.response.json();",
-							"pm.environment.set(\"OrgAdminRoleId\", jsonData.Resources[0].id);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "dc9df31c-13cc-451c-8df8-2bae5d122232",
-						"exec": [
-							"let OrgAdminRoleName = 'Organization_Administrator'",
-							"pm.environment.set('OrgAdminRoleName',OrgAdminRoleName)"
+							"pm.test(\"Response includes specific items\", function () {",
+							"    pm.expect(response).to.have.ownProperty(\"totalResults\"); ",
+							"    pm.expect(response).to.have.ownProperty(\"schemas\"); ",
+							"    pm.expect(response.Resources).to.have.instanceOf(Array);",
+							"    pm.expect(response.Resources).to.have.members;",
+							"});",
+							"",
+							"pm.test(\"Each resource should have 2 keys\", () => {",
+							"    _.each(pm.response.Resources, (item) => {",
+							"        pm.expect(item).to.be.an('object').and.have.keys(['id', 'displayName'])",
+							"    })",
+							"})"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "{{admin_password}}",
+							"key": "username",
+							"value": "admin",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "{{admin_username}}",
+							"key": "password",
+							"value": "admin",
 							"type": "string"
 						}
 					]
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {}
-					}
-				},
 				"url": {
-					"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{OrgAdminRoleName}}&domain=Internal",
+					"raw": "{{baseurl}}/scim2/Groups?domain=Internal&attributes=displayName",
 					"host": [
 						"{{baseurl}}"
 					],
@@ -158,972 +869,13 @@
 					],
 					"query": [
 						{
-							"key": "filter",
-							"value": "displayName+eq+{{OrgAdminRoleName}}"
-						},
-						{
 							"key": "domain",
 							"value": "Internal"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET  Organization_Viewer Role Id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "0f72b932-59f7-4a9c-a89e-0dcbcfb6beb6",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"let jsonData = pm.response.json();",
-							"pm.environment.set(\"OrgViewerRoleId\", jsonData.Resources[0].id);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "d0781de1-7448-41f5-8601-996afe70fd59",
-						"exec": [
-							"let OrgViewerRoleName = 'Organization_Viewer'",
-							"pm.environment.set('OrgViewerRoleName',OrgViewerRoleName)"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
+							"key": "attributes",
+							"value": "displayName"
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{OrgViewerRoleName}}&domain=Internal",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups"
-					],
-					"query": [
-						{
-							"key": "filter",
-							"value": "displayName+eq+{{OrgViewerRoleName}}"
-						},
-						{
-							"key": "domain",
-							"value": "Internal"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET  Role_Administrator Role Id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "310c746d-298b-4b43-bfe0-f207e313dc35",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"let jsonData = pm.response.json();",
-							"pm.environment.set(\"RoleAdminRoleId\", jsonData.Resources[0].id);",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "8e40a082-042a-4ad3-b467-3ec3142d8bf0",
-						"exec": [
-							"let RoleAdminRoleName = 'Role_Administrator'",
-							"pm.environment.set('RoleAdminRoleName',RoleAdminRoleName)"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{RoleAdminRoleName}}&domain=Internal",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups"
-					],
-					"query": [
-						{
-							"key": "filter",
-							"value": "displayName+eq+{{RoleAdminRoleName}}"
-						},
-						{
-							"key": "domain",
-							"value": "Internal"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET  User_Administrator Role Id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "87c74156-efb2-4cd9-8e0b-2b60c4151911",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"let jsonData = pm.response.json();",
-							"pm.environment.set(\"UserAdminRoleId\", jsonData.Resources[0].id);",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "0bf0323e-29f9-4209-a011-23f4d7c20aad",
-						"exec": [
-							"let UserAdminRoleName = 'User_Administrator'",
-							"pm.environment.set('UserAdminRoleName',UserAdminRoleName)"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{UserAdminRoleName}}&domain=Internal",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups"
-					],
-					"query": [
-						{
-							"key": "filter",
-							"value": "displayName+eq+{{UserAdminRoleName}}"
-						},
-						{
-							"key": "domain",
-							"value": "Internal"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "GET  User_Viewer Role Id",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "1a33813b-bfdd-45fe-9f70-ac484cd566e0",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"let jsonData = pm.response.json();",
-							"pm.environment.set(\"UserViewerRoleId\", jsonData.Resources[0].id);",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				},
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "3ad92c0e-957e-4d8b-8e5a-2fe915231f31",
-						"exec": [
-							"let UserViewerRoleName = 'User_Viewer'",
-							"pm.environment.set('UserViewerRoleName',UserViewerRoleName)"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups?filter=displayName+eq+{{UserViewerRoleName}}&domain=Internal",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups"
-					],
-					"query": [
-						{
-							"key": "filter",
-							"value": "displayName+eq+{{UserViewerRoleName}}"
-						},
-						{
-							"key": "domain",
-							"value": "Internal"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign permissions to the Organization_Administrator role",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "846e389d-595d-4e2e-87e2-26146aecd160",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.instanceOf(Array);",
-							"    ",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[ \n\"/permission/admin/manage/identity/usermgt/view\",\n\"/permission/admin/manage/identity/organizationmgt/create\",\n\"/permission/admin/manage/identity/organizationmgt/view\",\n\"/permission/admin/manage/identity/organizationmgt/update\",\n\"/permission/admin/manage/identity/organizationmgt/delete\",\n\"/permission/admin/manage/identity/rolemgt/view\",\n\"/permission/admin/manage/identity/userrolemgt/view\"\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{OrgAdminRoleId}}/permissions",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{OrgAdminRoleId}}",
-						"permissions"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign permissions to the Organization_Viewer role",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "9158654c-a277-42f1-a5cf-3bfbd8531d3f",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.instanceOf(Array);",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[ \n\"/permission/admin/manage/identity/usermgt/view\",\n\"/permission/admin/manage/identity/organizationmgt/view\",\n\"/permission/admin/manage/identity/rolemgt/view\"\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{OrgViewerRoleId}}/permissions",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{OrgViewerRoleId}}",
-						"permissions"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign permissions to the Role_Administrator role",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "68da1fa0-1559-4f24-9687-0a81b062ca61",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.instanceOf(Array);",
-							"    ",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[ \n \"/permission/admin/manage/identity/rolemgt\"\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{RoleAdminRoleId}}/permissions",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{RoleAdminRoleId}}",
-						"permissions"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign permissions to the User_Administrator role",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "7400a812-d9d7-4dbb-8271-12ebd9acb55b",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.instanceOf(Array);",
-							"    ",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[ \n\"/permission/admin/manage/identity/usermgt\",\n\"/permission/admin/manage/identity/organizationmgt/view\",\n\"/permission/admin/manage/identity/rolemgt/view\",\n\"/permission/admin/manage/identity/userrolemgt/view\"\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{UserAdminRoleId}}/permissions",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{UserAdminRoleId}}",
-						"permissions"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign permissions to the User_Viewer role",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "babcd0f1-e107-4766-9ed4-b43565997bc6",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.instanceOf(Array);",
-							"    ",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "[ \n\"/permission/admin/manage/identity/organizationmgt/view\",\n\"/permission/admin/manage/identity/rolemgt/view\",\n\"/permission/admin/manage/identity/userrolemgt/view\"\n]",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{UserViewerRoleId}}/permissions",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{UserViewerRoleId}}",
-						"permissions"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign INTERNAL/Organization_Administrator role to admin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "c23114ac-3003-4b93-9e47-f29abb52370e",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.ownProperty(\"members\"); ",
-							"    pm.expect(response.members).instanceOf(Array);",
-							"    pm.expect(response).to.have.ownProperty(\"id\"); ",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"displayName\": \"Internal/{{OrgAdminRoleName}}\",\n   \"members\": [\n    {\n      \"display\": \"admin\",\n      \"value\": \"{{adminId}}\"\n    }\n  ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{OrgAdminRoleId}}",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{OrgAdminRoleId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign INTERNAL/Organization_Viewer role to admin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "d599646f-386d-4bc2-a6d0-fd373cba951c",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.ownProperty(\"members\"); ",
-							"    pm.expect(response.members).instanceOf(Array);",
-							"    pm.expect(response).to.have.ownProperty(\"id\"); ",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"displayName\": \"Internal/{{OrgViewerRoleName}}\",\n   \"members\": [\n    {\n      \"display\": \"admin\",\n      \"value\": \"{{adminId}}\"\n    }\n  ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{OrgViewerRoleId}}",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{OrgViewerRoleId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign internal Role - INTERNAL/Role_Administrator to admin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "8c4cc6dc-cd35-4e68-b7ba-63b6b94a0a6b",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.ownProperty(\"members\"); ",
-							"    pm.expect(response.members).instanceOf(Array);",
-							"    pm.expect(response).to.have.ownProperty(\"id\"); ",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"schemas\": [\n    \"urn:ietf:params:scim:schemas:core:2.0:Group\"\n  ],\n  \"displayName\": \"Internal/{{RoleAdminRoleName}}\",\n  \"members\": [\n    {\n      \"display\": \"admin\",\n      \"value\": \"{{adminId}}\"\n    }\n  ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{RoleAdminRoleId}}",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{RoleAdminRoleId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign internal Role - INTERNAL/User_Administrator to admin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "871d0edd-dca6-49e7-9a50-2f52b70a4787",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.ownProperty(\"members\"); ",
-							"    pm.expect(response.members).instanceOf(Array);",
-							"    pm.expect(response).to.have.ownProperty(\"id\"); ",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"schemas\": [\n    \"urn:ietf:params:scim:schemas:core:2.0:Group\"\n  ],\n  \"displayName\": \"Internal/{{UserAdminRoleName}}\",\n   \"members\": [\n    {\n      \"display\": \"admin\",\n      \"value\": \"{{adminId}}\"\n    }\n  ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{UserAdminRoleId}}",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{UserAdminRoleId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Assign internal Role - INTERNAL/User_Viewer to admin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "324dfa25-b1db-41cb-9bd0-3935db35ba90",
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.ownProperty(\"members\"); ",
-							"    pm.expect(response.members).instanceOf(Array);",
-							"    pm.expect(response).to.have.ownProperty(\"id\"); ",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{admin_password}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{admin_username}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"schemas\": [\n    \"urn:ietf:params:scim:schemas:core:2.0:Group\"\n  ],\n  \"displayName\": \"Internal/{{UserViewerRoleName}}\",\n   \"members\": [\n    {\n      \"display\": \"admin\",\n      \"value\": \"{{adminId}}\"\n    }\n  ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/scim2/Groups/{{UserViewerRoleId}}",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"scim2",
-						"Groups",
-						"{{UserViewerRoleId}}"
 					]
 				}
 			},
@@ -1185,6 +937,78 @@
 						"organization-mgt",
 						"v1.0",
 						"organizations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Organization under ROOT - unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "76fa87f8-a070-4371-be1d-9261c30fca15",
+						"exec": [
+							"pm.test(\"Unauthorized organization creation\", function () {",
+							"     pm.response.to.have.status(403);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c40876b3-92e4-429d-abf3-d90b29fe9dbb",
+						"exec": [
+							"let OrgName= 'wso2'",
+							"pm.environment.set('OrgName',OrgName)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{admin_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{admin_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{OrgName}}\",\n    \"displayName\": \"WSO2\",\n    \"description\": \"LK organization\",\n    \"attributes\": [\n        {\n            \"key\": \"Type\",\n            \"value\": \"partner\"\n        },\n        {\n            \"key\": \"Exp\",\n            \"value\": \"2021\"\n        }\n    ],\n    \"userStoreConfigs\": [\n        {\n            \"key\": \"RDN\",\n            \"value\": \"{{OrgName}}\"\n        },\n        {\n            \"key\": \"USER_STORE_DOMAIN\",\n            \"value\": \"PRIMARY\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"identity",
+						"organization-mgt",
+						"v1.0",
+						"organizations",
+						""
 					]
 				}
 			},
@@ -1610,7 +1434,7 @@
 			"response": []
 		},
 		{
-			"name": "Create Organization under Parent by created user(smith) - Since he got org creation permission against root with include sub-orgs tihs request should be passed",
+			"name": "Create Organization(SubOrg1) under Parent by created user(smith) - Since he got org creation permission against root with include sub-orgs tihs request should be passed",
 			"event": [
 				{
 					"listen": "test",
@@ -1993,17 +1817,10 @@
 					"script": {
 						"id": "05505078-5693-41a3-9116-252aa03476f6",
 						"exec": [
-							"pm.test(\"Bad request on organization creation\", function () {",
-							"    pm.response.to.have.status(400);",
+							"pm.test(\"Successful POST returns 201\", function () {",
+							"    pm.response.to.have.status(201);",
 							"});",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.ownProperty(\"code\"); ",
-							"    pm.expect(response.code).to.equal(\"ORGMGT_00001\");",
-							"    pm.expect(response).to.have.ownProperty(\"message\"); ",
-							"    pm.expect(response.message).to.equal(\"Bad Request\");",
-							"});"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -2030,74 +1847,6 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"name\": \"TESTORG\",\n    \"displayName\": \"\",\n    \"description\": \"LK organization\",\n    \"attributes\": [\n        {\n            \"key\": \"Type\",\n            \"value\": \"partner\"\n        },\n        {\n            \"key\": \"Exp\",\n            \"value\": \"2021\"\n        }\n    ],\n    \"userStoreConfigs\": [\n        {\n            \"key\": \"RDN\",\n            \"value\": \"TESTORG\"\n        },\n        {\n            \"key\": \"USER_STORE_DOMAIN\",\n            \"value\": \"PRIMARY\"\n        }\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/",
-					"host": [
-						"{{baseurl}}"
-					],
-					"path": [
-						"api",
-						"identity",
-						"organization-mgt",
-						"v1.0",
-						"organizations",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Organization without Type attribute",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "dfe83471-403f-4cb3-ae5e-31b78ef6c079",
-						"exec": [
-							"pm.test(\"Bad request on organization creation\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							"",
-							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
-							"    pm.expect(response).to.have.ownProperty(\"code\"); ",
-							"    pm.expect(response.code).to.equal(\"ORGMGT_00001\");",
-							"    pm.expect(response).to.have.ownProperty(\"message\"); ",
-							"    pm.expect(response.message).to.equal(\"Bad Request\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "admin",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "admin",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"TEST\",\n    \"displayName\": \"TEST\",\n    \"description\": \"TEST organization\",\n    \"attributes\": [\n        {\n            \"key\": \"Exp\",\n            \"value\": \"2021\"\n        }\n    ],\n    \"userStoreConfigs\": [\n        {\n            \"key\": \"RDN\",\n            \"value\": \"TEST\"\n        },\n        {\n            \"key\": \"USER_STORE_DOMAIN\",\n            \"value\": \"PRIMARY\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -4496,6 +4245,199 @@
 			"response": []
 		},
 		{
+			"name": "PATCH to remove parent ID - Fail to Remove",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "610aff73-e592-4913-a240-9cc452c62bdb",
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.test(\"Status code is 400 because can not remove mandatory field : /parent/id\", function () {",
+							"    pm.response.to.have.status(400);",
+							"     pm.expect(response.code).to.eq('ORGMGT_00005');",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{admin_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{admin_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\": \"remove\",\n        \"path\": \"/parent/id\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"identity",
+						"organization-mgt",
+						"v1.0",
+						"organizations",
+						"{{ParentOrg}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH to add parent ID - Fail to add",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3b9b6970-cdbe-4def-9782-497f3cecd2c2",
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.test(\"Status code is 400 because can not remove mandatory field : /parent/id\", function () {",
+							"    pm.response.to.have.status(400);",
+							"     pm.expect(response.code).to.eq('ORGMGT_00005');",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{admin_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{admin_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\": \"add\",\n        \"path\": \"/parent/id\",\n        \"value\": \"{{ParentOrg}}\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"identity",
+						"organization-mgt",
+						"v1.0",
+						"organizations",
+						"{{ParentOrg}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH to replace parent ID - can replace",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a968d515-6db7-4510-bc17-81f60811240f",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{admin_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{admin_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/parent/id\",\n        \"value\": \"{{ROOTOrgId}}\"\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"identity",
+						"organization-mgt",
+						"v1.0",
+						"organizations",
+						"{{ParentOrg}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Assign User_administrator role to admin user against SubOrg1",
 			"event": [
 				{
@@ -4699,6 +4641,170 @@
 			"response": []
 		},
 		{
+			"name": "Add an application",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b2f238d5-88bb-450a-a433-bb5a143c7b46",
+						"exec": [
+							"let SampleApplicationName = \"SAMPLE_ADMIN_PORTAL\";",
+							"pm.environment.set('SampleApplicationName',SampleApplicationName);",
+							"",
+							"let ClientKey = \"SAMPLE_ADMIN_PORTAL\";",
+							"pm.environment.set('ClientKey',ClientKey);",
+							"",
+							"let ClientSecret = \"qoSmdpKWgqDvqqycoHEcmPtyOGoa\";",
+							"pm.environment.set('ClientSecret',ClientSecret);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "312b9d4f-fd4f-4e5c-ba20-c073af906205",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"{{SampleApplicationName}}\",\n  \"description\": \"This is the configuration for Pickup application.\",\n  \"inboundProtocolConfiguration\": {\n    \"oidc\": {\n        \"clientId\": \"{{ClientKey}}\",\n        \"clientSecret\": \"{{ClientSecret}}\",\n        \"state\": \"ACTIVE\",\n        \"grantTypes\": [\n            \"refresh_token\",\n            \"urn:ietf:params:oauth:grant-type:saml2-bearer\",\n            \"implicit\",\n            \"password\",\n            \"client_credentials\",\n            \"iwa:ntlm\",\n            \"urn:ietf:params:oauth:grant-type:device_code\",\n            \"authorization_code\",\n            \"urn:ietf:params:oauth:grant-type:uma-ticket\",\n            \"account_switch\",\n            \"urn:ietf:params:oauth:grant-type:jwt-bearer\"\n        ],\n        \"callbackURLs\": [\n            \"https://localhost:9443/localhost/callback\"\n        ],\n        \"allowedOrigins\": [],\n        \"publicClient\": false,\n        \"pkce\": {\n            \"mandatory\": false,\n            \"supportPlainTransformAlgorithm\": true\n        },\n        \"accessToken\": {\n            \"type\": \"Default\",\n            \"userAccessTokenExpiryInSeconds\": 3600,\n            \"applicationAccessTokenExpiryInSeconds\": 3600\n        },\n        \"refreshToken\": {\n            \"expiryInSeconds\": 86400,\n            \"renewRefreshToken\": true\n        },\n        \"idToken\": {\n            \"expiryInSeconds\": 3600,\n            \"audience\": [],\n            \"encryption\": {\n                \"enabled\": false,\n                \"algorithm\": \"\",\n                \"method\": \"\"\n            }\n        },\n        \"logout\": {},\n        \"validateRequestObjectSignature\": false,\n        \"scopeValidators\": []\n        }\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/server/v1/applications",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"server",
+						"v1",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get scope of admin user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3f7d8777-5802-4e78-91f4-378871ef6ea5",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{ClientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{ClientKey}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{admin_username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{admin_password}}",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "ORGANIZATION_SYSTEM",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/oauth2/token",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Assign Role_Administrator role to admin user against SubOrg1",
 			"event": [
 				{
@@ -4826,15 +4932,14 @@
 					"script": {
 						"id": "2dfbea03-bc45-4934-8202-c889a5dabc8a",
 						"exec": [
-							"let jsonData = pm.response.json();",
+							"let response = pm.response.json();",
 							"pm.test(\"Successful POST request\", function () {",
 							"     pm.response.to.have.status(201);",
 							"});",
 							"",
-							"pm.environment.set(\"User3SubOrg\", jsonData.id);",
+							"pm.environment.set(\"User3SubOrg\", response.id);",
 							"",
 							"pm.test(\"Response includes specified elements\", function () {",
-							"    let response = pm.response.json();",
 							"    pm.expect(response).to.have.ownProperty(\"name\"); ",
 							"    pm.expect(response.name.givenName).to.equal(\"Mary\");",
 							"});"
@@ -4892,6 +4997,85 @@
 					"path": [
 						"scim2",
 						"Users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user3 in SubOrg",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a85e7e57-66f3-4cc3-9339-ec239747196f",
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.test(\"Successful PATCH request\", function () {",
+							"     pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Successfully updated the user resource\", function () {",
+							"    pm.expect(response).to.have.ownProperty(\"nickName\"); ",
+							"    pm.expect(response.nickName).to.equal(pm.environment.get('NickNameOfUser3'));",
+							"    pm.expect(response.name.familyName).to.equal(pm.environment.get('FamilyNameOfUser3'));",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "692dcc48-5350-4ec6-b741-cac4d73fd670",
+						"exec": [
+							"let NickNameOfUser3 = 'shaggy'",
+							"pm.environment.set('NickNameOfUser3',NickNameOfUser3)",
+							"",
+							"let FamilyNameOfUser3 = 'John'",
+							"pm.environment.set('FamilyNameOfUser3',FamilyNameOfUser3)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{admin_password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{admin_username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"schemas\":[\n        \"urn:ietf:params:scim:api:messages:2.0:PatchOp\"\n        ],\n    \"Operations\":[\n        {\n            \"op\":\"add\",\n            \"value\":\n            {\n                \"nickName\":\"{{NickNameOfUser3}}\"\n            }\n        },\n        {\n            \"op\": \"replace\",\n            \"path\": \"name.familyName\",\n            \"value\": \"{{FamilyNameOfUser3}}\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/scim2/Users/{{User3SubOrg}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"scim2",
+						"Users",
+						"{{User3SubOrg}}"
 					]
 				}
 			},

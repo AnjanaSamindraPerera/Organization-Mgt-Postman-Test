@@ -1,17 +1,125 @@
 {
-	"id": "91e50028-bbe6-4ea9-904d-6a2988253053",
+	"id": "a895b755-0b9e-47e7-9b12-92855829178f",
 	"name": "Organization-Management-Test",
-	"timestamp": "2020-11-08T15:57:50.903Z",
+	"timestamp": "2020-11-13T09:56:01.391Z",
 	"collection_id": "713b01bd-60e1-4ba0-b1d3-eaffb76aebf1",
 	"folder_id": 0,
 	"environment_id": "7d39591a-e1e7-4bf1-80e6-e6ddd05e8921",
-	"totalPass": 110,
-	"totalFail": 5,
+	"totalPass": 112,
+	"totalFail": 1,
 	"results": [
 		{
 			"id": "751a6cd1-27b7-4432-b0e5-44ae2c62c67b",
 			"name": "GET admin user",
 			"url": "https://localhost:9443/scim2/Users?filter=username+eq+admin",
+			"time": 1364,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1364
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "f979aef5-cf3d-455e-8fe8-37770a52eb3b",
+			"name": "GET  User_Administrator Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+User_Administrator&domain=Internal",
+			"time": 121,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				121
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "76f4095c-f15c-41c5-9171-89cd23e65c22",
+			"name": "GET  Role_Administrator Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Role_Administrator&domain=Internal",
+			"time": 74,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				74
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "e7c66954-ff32-4e26-819b-042600c9ba8a",
+			"name": "GET  Organization_Administrator Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Organization_Administrator&domain=Internal",
+			"time": 73,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				73
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "eb58de20-52df-4ac9-9493-80f19386b514",
+			"name": "GET  Organization_Viewer Role Id",
+			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Organization_Viewer&domain=Internal",
 			"time": 95,
 			"responseCode": {
 				"code": 200,
@@ -36,118 +144,10 @@
 			]
 		},
 		{
-			"id": "e7c66954-ff32-4e26-819b-042600c9ba8a",
-			"name": "GET  Organization_Administrator Role Id",
-			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Organization_Administrator&domain=Internal",
-			"time": 42,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				42
-			],
-			"allTests": [
-				{
-					"Status code is 200": true
-				}
-			]
-		},
-		{
-			"id": "eb58de20-52df-4ac9-9493-80f19386b514",
-			"name": "GET  Organization_Viewer Role Id",
-			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Organization_Viewer&domain=Internal",
-			"time": 33,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				33
-			],
-			"allTests": [
-				{
-					"Status code is 200": true
-				}
-			]
-		},
-		{
-			"id": "76f4095c-f15c-41c5-9171-89cd23e65c22",
-			"name": "GET  Role_Administrator Role Id",
-			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+Role_Administrator&domain=Internal",
-			"time": 44,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				44
-			],
-			"allTests": [
-				{
-					"Status code is 200": true
-				}
-			]
-		},
-		{
-			"id": "f979aef5-cf3d-455e-8fe8-37770a52eb3b",
-			"name": "GET  User_Administrator Role Id",
-			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+User_Administrator&domain=Internal",
-			"time": 31,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				31
-			],
-			"allTests": [
-				{
-					"Status code is 200": true
-				}
-			]
-		},
-		{
 			"id": "d01a2422-c44b-4217-91f9-c8744f1f1a0e",
 			"name": "GET  User_Viewer Role Id",
 			"url": "https://localhost:9443/scim2/Groups?filter=displayName+eq+User_Viewer&domain=Internal",
-			"time": 34,
+			"time": 75,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -162,7 +162,7 @@
 				}
 			},
 			"times": [
-				34
+				75
 			],
 			"allTests": [
 				{
@@ -171,10 +171,10 @@
 			]
 		},
 		{
-			"id": "50f8b89d-65e4-4f6b-a916-87f393332ee8",
-			"name": "Assign permissions to the Organization_Administrator role",
-			"url": "https://localhost:9443/scim2/Groups/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/permissions",
-			"time": 105,
+			"id": "d1d09e8a-fa5d-496e-b4b4-5ba6860ee5ac",
+			"name": "Assign permissions to the User_Administrator role",
+			"url": "https://localhost:9443/scim2/Groups/7d4e3ac9-da93-4b7a-a2d0-84bb6c01dc25/permissions",
+			"time": 281,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -194,40 +194,7 @@
 				}
 			},
 			"times": [
-				105
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response includes specified elements": true
-				}
-			]
-		},
-		{
-			"id": "c38bb7f8-b7d4-4c1a-9e6c-4bd3503faa72",
-			"name": "Assign permissions to the Organization_Viewer role",
-			"url": "https://localhost:9443/scim2/Groups/e444cd2b-1149-4a54-bc42-084f819e89a1/permissions",
-			"time": 134,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response includes specified elements": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response includes specified elements": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				134
+				281
 			],
 			"allTests": [
 				{
@@ -240,7 +207,7 @@
 			"id": "17a3b007-c051-4ba0-aabb-ce353c52c653",
 			"name": "Assign permissions to the Role_Administrator role",
 			"url": "https://localhost:9443/scim2/Groups/ada47169-436c-4ab9-a8ef-c06aa641edcd/permissions",
-			"time": 123,
+			"time": 102,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -260,7 +227,7 @@
 				}
 			},
 			"times": [
-				123
+				102
 			],
 			"allTests": [
 				{
@@ -270,10 +237,10 @@
 			]
 		},
 		{
-			"id": "d1d09e8a-fa5d-496e-b4b4-5ba6860ee5ac",
-			"name": "Assign permissions to the User_Administrator role",
-			"url": "https://localhost:9443/scim2/Groups/7d4e3ac9-da93-4b7a-a2d0-84bb6c01dc25/permissions",
-			"time": 97,
+			"id": "50f8b89d-65e4-4f6b-a916-87f393332ee8",
+			"name": "Assign permissions to the Organization_Administrator role",
+			"url": "https://localhost:9443/scim2/Groups/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/permissions",
+			"time": 173,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -293,7 +260,40 @@
 				}
 			},
 			"times": [
-				97
+				173
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response includes specified elements": true
+				}
+			]
+		},
+		{
+			"id": "c38bb7f8-b7d4-4c1a-9e6c-4bd3503faa72",
+			"name": "Assign permissions to the Organization_Viewer role",
+			"url": "https://localhost:9443/scim2/Groups/e444cd2b-1149-4a54-bc42-084f819e89a1/permissions",
+			"time": 103,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response includes specified elements": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response includes specified elements": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				103
 			],
 			"allTests": [
 				{
@@ -306,7 +306,7 @@
 			"id": "47f89ec5-86b4-493d-9bac-c01630f0676a",
 			"name": "Assign permissions to the User_Viewer role",
 			"url": "https://localhost:9443/scim2/Groups/25b2a422-f698-48bd-8cea-4cc27848eaaf/permissions",
-			"time": 108,
+			"time": 112,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -326,7 +326,7 @@
 				}
 			},
 			"times": [
-				108
+				112
 			],
 			"allTests": [
 				{
@@ -336,167 +336,41 @@
 			]
 		},
 		{
-			"id": "cb9294cb-8fca-4780-9635-e800efff11b0",
-			"name": "Assign INTERNAL/Organization_Administrator role to admin",
-			"url": "https://localhost:9443/scim2/Groups/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63",
-			"time": 56,
+			"id": "4dd9b03f-9d4a-48ca-a2af-cc51cc384348",
+			"name": "List displayNames of Internal Roles",
+			"url": "https://localhost:9443/scim2/Groups?domain=Internal&attributes=displayName",
+			"time": 266,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
 			},
 			"tests": {
 				"Status code is 200": true,
-				"Response includes specified elements": true
+				"Response includes specific items": true,
+				"Each resource should have 2 keys": true
 			},
 			"testPassFailCounts": {
 				"Status code is 200": {
 					"pass": 1,
 					"fail": 0
 				},
-				"Response includes specified elements": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				56
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response includes specified elements": true
-				}
-			]
-		},
-		{
-			"id": "eedd5acc-ad76-4994-8f88-3c87d39fa15c",
-			"name": "Assign INTERNAL/Organization_Viewer role to admin",
-			"url": "https://localhost:9443/scim2/Groups/e444cd2b-1149-4a54-bc42-084f819e89a1",
-			"time": 56,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response includes specified elements": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
+				"Response includes specific items": {
 					"pass": 1,
 					"fail": 0
 				},
-				"Response includes specified elements": {
+				"Each resource should have 2 keys": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				56
+				266
 			],
 			"allTests": [
 				{
 					"Status code is 200": true,
-					"Response includes specified elements": true
-				}
-			]
-		},
-		{
-			"id": "d37dca4b-1784-4b5b-a6b5-64aba6d0c98d",
-			"name": "Assign internal Role - INTERNAL/Role_Administrator to admin",
-			"url": "https://localhost:9443/scim2/Groups/ada47169-436c-4ab9-a8ef-c06aa641edcd",
-			"time": 54,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response includes specified elements": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response includes specified elements": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				54
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response includes specified elements": true
-				}
-			]
-		},
-		{
-			"id": "68a20610-6d82-4fa7-92f1-0001a6f13fa3",
-			"name": "Assign internal Role - INTERNAL/User_Administrator to admin",
-			"url": "https://localhost:9443/scim2/Groups/7d4e3ac9-da93-4b7a-a2d0-84bb6c01dc25",
-			"time": 56,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response includes specified elements": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response includes specified elements": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				56
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response includes specified elements": true
-				}
-			]
-		},
-		{
-			"id": "23e09e94-2ae6-4521-b2bb-0944d237aba9",
-			"name": "Assign internal Role - INTERNAL/User_Viewer to admin",
-			"url": "https://localhost:9443/scim2/Groups/25b2a422-f698-48bd-8cea-4cc27848eaaf",
-			"time": 46,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status code is 200": true,
-				"Response includes specified elements": true
-			},
-			"testPassFailCounts": {
-				"Status code is 200": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Response includes specified elements": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				46
-			],
-			"allTests": [
-				{
-					"Status code is 200": true,
-					"Response includes specified elements": true
+					"Response includes specific items": true,
+					"Each resource should have 2 keys": true
 				}
 			]
 		},
@@ -504,7 +378,7 @@
 			"id": "24fe3aea-9b17-4718-b88c-4df0c890a4b2",
 			"name": "List all orgs in the fresh pack - only ROOT should be returned",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations",
-			"time": 59,
+			"time": 594,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -529,7 +403,7 @@
 				}
 			},
 			"times": [
-				59
+				594
 			],
 			"allTests": [
 				{
@@ -540,10 +414,37 @@
 			]
 		},
 		{
+			"id": "24e21be2-0922-4782-a952-0ad79bb89881",
+			"name": "Create Organization under ROOT - unauthorized",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
+			"time": 167,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Unauthorized organization creation": true
+			},
+			"testPassFailCounts": {
+				"Unauthorized organization creation": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				167
+			],
+			"allTests": [
+				{
+					"Unauthorized organization creation": true
+				}
+			]
+		},
+		{
 			"id": "c91bcf8b-cde4-430a-8255-113d544ed2d2",
 			"name": "Assign Organization_Administrator role to admin user against ROOT",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/f7cd7eb3-d71c-464a-8ff6-811485e564fc/roles",
-			"time": 129,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/9b6e1317-8d6a-44d8-b01f-c62b6bb3a920/roles",
+			"time": 194,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -558,7 +459,7 @@
 				}
 			},
 			"times": [
-				129
+				194
 			],
 			"allTests": [
 				{
@@ -570,7 +471,7 @@
 			"id": "c4161c50-b122-4b12-be8e-325c97362b8b",
 			"name": "Create Organization under ROOT",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 111,
+			"time": 106,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -590,7 +491,7 @@
 				}
 			},
 			"times": [
-				111
+				106
 			],
 			"allTests": [
 				{
@@ -602,8 +503,8 @@
 		{
 			"id": "76b6bbbc-055b-42f0-a4fd-11cc5f10a89a",
 			"name": "Assign User_Administrator role to admin user against ROOT",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/f7cd7eb3-d71c-464a-8ff6-811485e564fc/roles",
-			"time": 59,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/9b6e1317-8d6a-44d8-b01f-c62b6bb3a920/roles",
+			"time": 40,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -618,7 +519,7 @@
 				}
 			},
 			"times": [
-				59
+				40
 			],
 			"allTests": [
 				{
@@ -630,7 +531,7 @@
 			"id": "268a269d-1afb-4870-bcdc-86082c52a08b",
 			"name": "Create User1(smith) in parent org",
 			"url": "https://localhost:9443/scim2/Users",
-			"time": 282,
+			"time": 357,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -650,7 +551,7 @@
 				}
 			},
 			"times": [
-				282
+				357
 			],
 			"allTests": [
 				{
@@ -663,7 +564,7 @@
 			"id": "9fc5ee52-c95d-4605-8bbe-75543d01cc80",
 			"name": "Create Organization under ROOT by unauthorized user(smith)",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 71,
+			"time": 37,
 			"responseCode": {
 				"code": 403,
 				"name": "Forbidden"
@@ -678,7 +579,7 @@
 				}
 			},
 			"times": [
-				71
+				37
 			],
 			"allTests": [
 				{
@@ -689,8 +590,8 @@
 		{
 			"id": "f9693990-9185-440c-9c8e-58d72200d11b",
 			"name": "Assign Organization_Administrator role to new user(smith) against the ROOT with include suborgs",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a/roles",
-			"time": 29,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7/roles",
+			"time": 51,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -705,7 +606,7 @@
 				}
 			},
 			"times": [
-				29
+				51
 			],
 			"allTests": [
 				{
@@ -715,9 +616,9 @@
 		},
 		{
 			"id": "22061d37-3ed2-4a8f-93aa-66d7817ee2ce",
-			"name": "Create Organization under Parent by created user(smith) - Since he got org creation permission against root with include sub-orgs tihs request should be passed",
+			"name": "Create Organization(SubOrg1) under Parent by created user(smith) - Since he got org creation permission against root with include sub-orgs tihs request should be passed",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 82,
+			"time": 78,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -737,7 +638,7 @@
 				}
 			},
 			"times": [
-				82
+				78
 			],
 			"allTests": [
 				{
@@ -750,7 +651,7 @@
 			"id": "49b8fadb-3139-46f2-a335-81303a9994b1",
 			"name": "Create Organization under ROOT with an existing name",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 35,
+			"time": 28,
 			"responseCode": {
 				"code": 409,
 				"name": "Conflict"
@@ -765,7 +666,7 @@
 				}
 			},
 			"times": [
-				35
+				28
 			],
 			"allTests": [
 				{
@@ -777,7 +678,7 @@
 			"id": "bfc39924-bbbf-46f9-a3fb-5a39e39afb0f",
 			"name": "Create Organization which name contains special charcaters",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 79,
+			"time": 117,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -797,7 +698,7 @@
 				}
 			},
 			"times": [
-				79
+				117
 			],
 			"allTests": [
 				{
@@ -810,7 +711,7 @@
 			"id": "948fa4d2-3015-48a8-b683-4682d53407f0",
 			"name": "Create Organization which name contains space",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 51,
+			"time": 116,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -830,7 +731,7 @@
 				}
 			},
 			"times": [
-				51
+				116
 			],
 			"allTests": [
 				{
@@ -843,7 +744,7 @@
 			"id": "e71f68fb-847f-4b2f-a16e-18f6dc88a14e",
 			"name": "Create Organization without name",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 28,
+			"time": 37,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -863,7 +764,7 @@
 				}
 			},
 			"times": [
-				28
+				37
 			],
 			"allTests": [
 				{
@@ -876,65 +777,26 @@
 			"id": "b45455ec-1527-42ab-bf91-2e67d304b149",
 			"name": "Create Organization without a displayName",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 78,
+			"time": 80,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
 			},
 			"tests": {
-				"Bad request on organization creation": false,
-				"Response includes specified elements": false
+				"Successful POST returns 201": true
 			},
 			"testPassFailCounts": {
-				"Bad request on organization creation": {
-					"pass": 0,
-					"fail": 1
-				},
-				"Response includes specified elements": {
-					"pass": 0,
-					"fail": 1
+				"Successful POST returns 201": {
+					"pass": 1,
+					"fail": 0
 				}
 			},
 			"times": [
-				78
+				80
 			],
 			"allTests": [
 				{
-					"Bad request on organization creation": false,
-					"Response includes specified elements": false
-				}
-			]
-		},
-		{
-			"id": "3e72c6aa-98e7-4001-91af-a4be6706555f",
-			"name": "Create Organization without Type attribute",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/",
-			"time": 81,
-			"responseCode": {
-				"code": 201,
-				"name": "Created"
-			},
-			"tests": {
-				"Bad request on organization creation": false,
-				"Response includes specified elements": false
-			},
-			"testPassFailCounts": {
-				"Bad request on organization creation": {
-					"pass": 0,
-					"fail": 1
-				},
-				"Response includes specified elements": {
-					"pass": 0,
-					"fail": 1
-				}
-			},
-			"times": [
-				81
-			],
-			"allTests": [
-				{
-					"Bad request on organization creation": false,
-					"Response includes specified elements": false
+					"Successful POST returns 201": true
 				}
 			]
 		},
@@ -942,7 +804,7 @@
 			"id": "c8a5dfa4-ec66-4817-a15c-349487c055fa",
 			"name": "Create User2 in parent org",
 			"url": "https://localhost:9443/scim2/Users",
-			"time": 189,
+			"time": 146,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -962,7 +824,7 @@
 				}
 			},
 			"times": [
-				189
+				146
 			],
 			"allTests": [
 				{
@@ -974,8 +836,8 @@
 		{
 			"id": "383be2b5-03ac-44b7-88f4-f686d4309327",
 			"name": "GET Organization by id",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
-			"time": 38,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7",
+			"time": 50,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -995,7 +857,7 @@
 				}
 			},
 			"times": [
-				38
+				50
 			],
 			"allTests": [
 				{
@@ -1007,8 +869,8 @@
 		{
 			"id": "3b8308f0-e5df-4c37-9db5-5edf5c424c0c",
 			"name": "GET Organization by id by unauthorized user(User2 - kim)",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
-			"time": 22,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7",
+			"time": 38,
 			"responseCode": {
 				"code": 403,
 				"name": "Forbidden"
@@ -1023,7 +885,7 @@
 				}
 			},
 			"times": [
-				22
+				38
 			],
 			"allTests": [
 				{
@@ -1035,7 +897,7 @@
 			"id": "1d4b189e-73ea-4e60-b7b9-782064fdb0bb",
 			"name": "List all organization by unauthorized user(User2 - kim)",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations",
-			"time": 73,
+			"time": 42,
 			"responseCode": {
 				"code": 403,
 				"name": "Forbidden"
@@ -1050,7 +912,7 @@
 				}
 			},
 			"times": [
-				73
+				42
 			],
 			"allTests": [
 				{
@@ -1061,8 +923,8 @@
 		{
 			"id": "c08dce7e-2db0-47ea-a37b-aef659f4cb57",
 			"name": "Assign Organization_Viewer role to user2(kim) against subOrg1-(include sub-org false)",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
-			"time": 27,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa/roles",
+			"time": 32,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -1077,7 +939,7 @@
 				}
 			},
 			"times": [
-				27
+				32
 			],
 			"allTests": [
 				{
@@ -1089,7 +951,7 @@
 			"id": "f103f53b-62be-4f97-aab8-c3f2bace0bb3",
 			"name": "List all organization by user(User2 - kim)  - Return only the orgs which he has permission. Should return only subOrg1",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations",
-			"time": 146,
+			"time": 80,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1109,7 +971,7 @@
 				}
 			},
 			"times": [
-				146
+				80
 			],
 			"allTests": [
 				{
@@ -1122,7 +984,7 @@
 			"id": "3bad5c1f-d5ba-47ab-90c9-23f75a8a1bad",
 			"name": "Get Organizations with Filter by Orgname order by DESC",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortBy=name&sortOrder=DESC",
-			"time": 70,
+			"time": 64,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1147,7 +1009,7 @@
 				}
 			},
 			"times": [
-				70
+				64
 			],
 			"allTests": [
 				{
@@ -1161,7 +1023,7 @@
 			"id": "42539f39-45ac-4305-a43f-ed7de430271b",
 			"name": "Get Organizations with Filter by Orgname order by ASC",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortBy=name&sortOrder=ASC",
-			"time": 81,
+			"time": 73,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1186,7 +1048,7 @@
 				}
 			},
 			"times": [
-				81
+				73
 			],
 			"allTests": [
 				{
@@ -1200,7 +1062,7 @@
 			"id": "8d2f3a4d-e722-49ae-9061-cbdf514887cf",
 			"name": "Get Organizations with Filter without sortBy Param order by ASC",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortOrder=ASC",
-			"time": 34,
+			"time": 33,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1225,7 +1087,7 @@
 				}
 			},
 			"times": [
-				34
+				33
 			],
 			"allTests": [
 				{
@@ -1239,7 +1101,7 @@
 			"id": "6f55fdd2-ca92-4c46-9b8c-7c3767075d61",
 			"name": "Get Organizations with Filter by name - case insensitive search",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27WSO2%27",
-			"time": 115,
+			"time": 94,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1269,7 +1131,7 @@
 				}
 			},
 			"times": [
-				115
+				94
 			],
 			"allTests": [
 				{
@@ -1284,7 +1146,7 @@
 			"id": "1b2f291e-ede7-4a84-9acb-bcf4f26da473",
 			"name": "Get Organizations with Filter by name eq \"\"",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27615ORG%27",
-			"time": 29,
+			"time": 53,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1299,7 +1161,7 @@
 				}
 			},
 			"times": [
-				29
+				53
 			],
 			"allTests": [
 				{
@@ -1311,6 +1173,132 @@
 			"id": "157ba864-0a95-48fb-ad2a-b003a8a470b8",
 			"name": "Get Organizations with Filter by a name with spaces",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27wso2%20org%27",
+			"time": 75,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				75
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true
+				}
+			]
+		},
+		{
+			"id": "48eaf0b6-85f4-4010-bfff-ec6f0bb8fd9c",
+			"name": "Get Organizations with Filter by AND operator - no results",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27GAYANIORG12%27and%20attributeValue%20eq%20%270000%27",
+			"time": 43,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Return empty array": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				43
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Return empty array": true
+				}
+			]
+		},
+		{
+			"id": "6d85b567-3f93-459a-a62f-f42b93e4d56c",
+			"name": "Get Organizations with Filter by AND operaror - have result",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27wso2%27and%20displayName%20eq%20%27WSO2%27",
+			"time": 63,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Return non-empty array": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return non-empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				63
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Return non-empty array": true
+				}
+			]
+		},
+		{
+			"id": "e1c57744-98cd-4dd7-99b6-f82109c23a9e",
+			"name": "Get Organizations with Filter by Type=Partner",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=attributeKey%20eq%20%27Type%27%20and%20attributeValue%20eq%20%27Partner%27",
+			"time": 97,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify organizations list has returned": true,
+				"Return non-empty array": true
+			},
+			"testPassFailCounts": {
+				"Verify organizations list has returned": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Return non-empty array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				97
+			],
+			"allTests": [
+				{
+					"Verify organizations list has returned": true,
+					"Return non-empty array": true
+				}
+			]
+		},
+		{
+			"id": "19a4024d-414c-4452-8ea3-dd9819fa8106",
+			"name": "Get Organization which removed exp attribute",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortBy=name&sortOrder=DESC",
 			"time": 52,
 			"responseCode": {
 				"code": 200,
@@ -1335,75 +1323,9 @@
 			]
 		},
 		{
-			"id": "48eaf0b6-85f4-4010-bfff-ec6f0bb8fd9c",
-			"name": "Get Organizations with Filter by AND operator - no results",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27GAYANIORG12%27and%20attributeValue%20eq%20%270000%27",
-			"time": 91,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Verify organizations list has returned": true,
-				"Return empty array": true
-			},
-			"testPassFailCounts": {
-				"Verify organizations list has returned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Return empty array": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				91
-			],
-			"allTests": [
-				{
-					"Verify organizations list has returned": true,
-					"Return empty array": true
-				}
-			]
-		},
-		{
-			"id": "6d85b567-3f93-459a-a62f-f42b93e4d56c",
-			"name": "Get Organizations with Filter by AND operaror - have result",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27wso2%27and%20displayName%20eq%20%27WSO2%27",
-			"time": 50,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Verify organizations list has returned": true,
-				"Return non-empty array": true
-			},
-			"testPassFailCounts": {
-				"Verify organizations list has returned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Return non-empty array": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				50
-			],
-			"allTests": [
-				{
-					"Verify organizations list has returned": true,
-					"Return non-empty array": true
-				}
-			]
-		},
-		{
-			"id": "e1c57744-98cd-4dd7-99b6-f82109c23a9e",
-			"name": "Get Organizations with Filter by Type=Partner",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=attributeKey%20eq%20%27Type%27%20and%20attributeValue%20eq%20%27Partner%27",
+			"id": "7c6eaff7-482c-4d2a-b317-6a1744484a73",
+			"name": "Get Organizations with Filter by type=Partner and status=Active",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=status%20eq%20%27ACTIVE%27and%20attributeValue%20eq%20%27Partner%27",
 			"time": 70,
 			"responseCode": {
 				"code": 200,
@@ -1434,70 +1356,10 @@
 			]
 		},
 		{
-			"id": "19a4024d-414c-4452-8ea3-dd9819fa8106",
-			"name": "Get Organization which removed exp attribute",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?sortBy=name&sortOrder=DESC",
-			"time": 23,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Verify organizations list has returned": true
-			},
-			"testPassFailCounts": {
-				"Verify organizations list has returned": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				23
-			],
-			"allTests": [
-				{
-					"Verify organizations list has returned": true
-				}
-			]
-		},
-		{
-			"id": "7c6eaff7-482c-4d2a-b317-6a1744484a73",
-			"name": "Get Organizations with Filter by type=Partner and status=Active",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=status%20eq%20%27ACTIVE%27and%20attributeValue%20eq%20%27Partner%27",
-			"time": 33,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Verify organizations list has returned": true,
-				"Return non-empty array": true
-			},
-			"testPassFailCounts": {
-				"Verify organizations list has returned": {
-					"pass": 1,
-					"fail": 0
-				},
-				"Return non-empty array": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				33
-			],
-			"allTests": [
-				{
-					"Verify organizations list has returned": true,
-					"Return non-empty array": true
-				}
-			]
-		},
-		{
 			"id": "b4314313-d6a7-4e16-9541-34b0382c1ad2",
 			"name": "Get Organizations with Filter by OR operator",
 			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations?$filter=name%20eq%20%27wso2%27or%20attributeValue%20eq%20%27BYOXFED%27",
-			"time": 117,
+			"time": 69,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1517,7 +1379,7 @@
 				}
 			},
 			"times": [
-				117
+				69
 			],
 			"allTests": [
 				{
@@ -1529,8 +1391,8 @@
 		{
 			"id": "f61ef190-995d-4555-9a37-e2c946b01d14",
 			"name": "PATCH the Parent organization",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
-			"time": 60,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7",
+			"time": 79,
 			"responseCode": {
 				"code": 204,
 				"name": "No Content"
@@ -1545,7 +1407,7 @@
 				}
 			},
 			"times": [
-				60
+				79
 			],
 			"allTests": [
 				{
@@ -1556,8 +1418,8 @@
 		{
 			"id": "942a86bb-1374-4709-aeed-5b89e1f4ab2c",
 			"name": "Get Org to validate PATCH operations",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
-			"time": 22,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7",
+			"time": 29,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1582,7 +1444,7 @@
 				}
 			},
 			"times": [
-				22
+				29
 			],
 			"allTests": [
 				{
@@ -1595,8 +1457,8 @@
 		{
 			"id": "cbfe93c2-b9c4-462e-9466-947401e79d85",
 			"name": "PATCH the parent organization - use invalid payload(add operation without a path)",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a",
-			"time": 63,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7",
+			"time": 89,
 			"responseCode": {
 				"code": 500,
 				"name": "Internal Server Error"
@@ -1611,7 +1473,7 @@
 				}
 			},
 			"times": [
-				63
+				89
 			],
 			"allTests": [
 				{
@@ -1622,8 +1484,8 @@
 		{
 			"id": "c0732403-501d-4b08-bedb-f5e68d4af696",
 			"name": "GET Children organizations of ParentOrg by admin",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a/children",
-			"time": 113,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7/children",
+			"time": 108,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1643,7 +1505,7 @@
 				}
 			},
 			"times": [
-				113
+				108
 			],
 			"allTests": [
 				{
@@ -1655,8 +1517,8 @@
 		{
 			"id": "45d5be8b-6daf-4808-b6ff-de08c2d4f88f",
 			"name": "Assign Organization_Viewer role to admin user against SubOrg1",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
-			"time": 75,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa/roles",
+			"time": 42,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -1671,7 +1533,7 @@
 				}
 			},
 			"times": [
-				75
+				42
 			],
 			"allTests": [
 				{
@@ -1682,8 +1544,8 @@
 		{
 			"id": "5aede737-cbd1-4e98-82aa-60dd6cd5fb80",
 			"name": "GET Children organizations of ParentOrg by admin - since subOrg1 got permission, the output should be increased by one",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/2ce6ac7a-721b-4144-b078-837c1958488a/children",
-			"time": 42,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7/children",
+			"time": 89,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1713,7 +1575,7 @@
 				}
 			},
 			"times": [
-				42
+				89
 			],
 			"allTests": [
 				{
@@ -1725,10 +1587,91 @@
 			]
 		},
 		{
+			"id": "436a48ea-3c6a-4154-bfaa-6322e8eec4a1",
+			"name": "PATCH to remove parent ID - Fail to Remove",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7",
+			"time": 53,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400 because can not remove mandatory field : /parent/id": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400 because can not remove mandatory field : /parent/id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				53
+			],
+			"allTests": [
+				{
+					"Status code is 400 because can not remove mandatory field : /parent/id": true
+				}
+			]
+		},
+		{
+			"id": "38b6be2f-cd85-4d72-ac02-6ce2e310c9b9",
+			"name": "PATCH to add parent ID - Fail to add",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7",
+			"time": 53,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status code is 400 because can not remove mandatory field : /parent/id": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400 because can not remove mandatory field : /parent/id": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				53
+			],
+			"allTests": [
+				{
+					"Status code is 400 because can not remove mandatory field : /parent/id": true
+				}
+			]
+		},
+		{
+			"id": "1abafa8b-a987-45fe-8a72-7d156a7cf5f1",
+			"name": "PATCH to replace parent ID - can replace",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/66bc9e51-f71c-4a13-a6bc-41cdf7b187a7",
+			"time": 104,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {
+				"Status code is 204": true
+			},
+			"testPassFailCounts": {
+				"Status code is 204": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				104
+			],
+			"allTests": [
+				{
+					"Status code is 204": true
+				}
+			]
+		},
+		{
 			"id": "e1519f9f-c0f7-495b-a782-c4945b7cd137",
 			"name": "Assign User_administrator role to admin user against SubOrg1",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
-			"time": 26,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa/roles",
+			"time": 27,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -1743,7 +1686,7 @@
 				}
 			},
 			"times": [
-				26
+				27
 			],
 			"allTests": [
 				{
@@ -1754,8 +1697,8 @@
 		{
 			"id": "b2e0f6ad-de18-48a6-af4e-ab8d4b9cfeb1",
 			"name": "View members of a role",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/f7cd7eb3-d71c-464a-8ff6-811485e564fc/roles/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/users",
-			"time": 308,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/9b6e1317-8d6a-44d8-b01f-c62b6bb3a920/roles/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/users",
+			"time": 510,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1780,7 +1723,7 @@
 				}
 			},
 			"times": [
-				308
+				510
 			],
 			"allTests": [
 				{
@@ -1793,8 +1736,8 @@
 		{
 			"id": "6fec6968-a0b4-4bea-be0d-6e943ec27ca1",
 			"name": "View members of a role - with attributes",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/f7cd7eb3-d71c-464a-8ff6-811485e564fc/roles/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/users?attributes=name,urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.organization",
-			"time": 100,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/9b6e1317-8d6a-44d8-b01f-c62b6bb3a920/roles/60f55ef5-a3f3-42fc-9a45-7c6b5defdc63/users?attributes=name,urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.organization",
+			"time": 189,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1819,7 +1762,7 @@
 				}
 			},
 			"times": [
-				100
+				189
 			],
 			"allTests": [
 				{
@@ -1830,10 +1773,10 @@
 			]
 		},
 		{
-			"id": "4222da56-215c-4203-83e3-e83172fe0f0c",
-			"name": "Assign Role_Administrator role to admin user against SubOrg1",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
-			"time": 31,
+			"id": "a4281d1e-5a7d-482a-8579-442768d571ae",
+			"name": "Add an application",
+			"url": "https://localhost:9443/api/server/v1/applications",
+			"time": 1502,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -1848,7 +1791,61 @@
 				}
 			},
 			"times": [
-				31
+				1502
+			],
+			"allTests": [
+				{
+					"Status code is 201": true
+				}
+			]
+		},
+		{
+			"id": "30e54b1d-7cdd-4588-b48f-78bade665b88",
+			"name": "Get scope of admin user",
+			"url": "https://localhost:9443/oauth2/token",
+			"time": 321,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				321
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "4222da56-215c-4203-83e3-e83172fe0f0c",
+			"name": "Assign Role_Administrator role to admin user against SubOrg1",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa/roles",
+			"time": 79,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				79
 			],
 			"allTests": [
 				{
@@ -1859,7 +1856,7 @@
 		{
 			"id": "4c428d85-a6b1-41d7-a24d-3832993552f3",
 			"name": "DELETE Organization_Viewer role from User2(kim) from SubOrg1",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles/e444cd2b-1149-4a54-bc42-084f819e89a1/users/4e4e19da-c30e-491b-a0d8-41b43d2b0a59",
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa/roles/e444cd2b-1149-4a54-bc42-084f819e89a1/users/26d88470-534f-4870-b534-ce8ea33ad2c9",
 			"time": 46,
 			"responseCode": {
 				"code": 204,
@@ -1887,7 +1884,7 @@
 			"id": "9388c4d4-a8a6-4a94-b0a1-f62febe5c4e8",
 			"name": "Create a user3 in SubOrg",
 			"url": "https://localhost:9443/scim2/Users",
-			"time": 132,
+			"time": 244,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -1907,7 +1904,7 @@
 				}
 			},
 			"times": [
-				132
+				244
 			],
 			"allTests": [
 				{
@@ -1917,10 +1914,43 @@
 			]
 		},
 		{
+			"id": "f75bed44-111f-48fe-b8ee-4ecea1492225",
+			"name": "Update user3 in SubOrg",
+			"url": "https://localhost:9443/scim2/Users/2337ac4f-5895-4827-9047-7ab540383bf6",
+			"time": 457,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Successful PATCH request": true,
+				"Successfully updated the user resource": true
+			},
+			"testPassFailCounts": {
+				"Successful PATCH request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Successfully updated the user resource": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				457
+			],
+			"allTests": [
+				{
+					"Successful PATCH request": true,
+					"Successfully updated the user resource": true
+				}
+			]
+		},
+		{
 			"id": "75d6a391-7c72-45c1-9635-29c94407be87",
 			"name": "DELETE subOrg1 by admin - unauthorized request",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
-			"time": 54,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa",
+			"time": 32,
 			"responseCode": {
 				"code": 403,
 				"name": "Forbidden"
@@ -1935,7 +1965,7 @@
 				}
 			},
 			"times": [
-				54
+				32
 			],
 			"allTests": [
 				{
@@ -1946,8 +1976,8 @@
 		{
 			"id": "19f4a319-f844-4431-8f64-c8bd53bc5bbf",
 			"name": "Assign Organization_Administrator role to admin user against SubOrg1 Copy",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463/roles",
-			"time": 26,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa/roles",
+			"time": 23,
 			"responseCode": {
 				"code": 201,
 				"name": "Created"
@@ -1962,7 +1992,7 @@
 				}
 			},
 			"times": [
-				26
+				23
 			],
 			"allTests": [
 				{
@@ -1973,8 +2003,8 @@
 		{
 			"id": "9a6b174d-f65a-4f8e-b80f-a038e2d4b553",
 			"name": "DELETE subOrg1 by admin - authorized. but org is not in disable state",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
-			"time": 55,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa",
+			"time": 27,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1989,7 +2019,7 @@
 				}
 			},
 			"times": [
-				55
+				27
 			],
 			"allTests": [
 				{
@@ -2000,8 +2030,8 @@
 		{
 			"id": "ee667a0a-5808-4c76-9381-9d4f6f61444c",
 			"name": "PATCH the SubOrg status to disable",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
-			"time": 109,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa",
+			"time": 125,
 			"responseCode": {
 				"code": 204,
 				"name": "No Content"
@@ -2016,7 +2046,7 @@
 				}
 			},
 			"times": [
-				109
+				125
 			],
 			"allTests": [
 				{
@@ -2027,8 +2057,8 @@
 		{
 			"id": "1ec3ac1a-d605-4981-b077-f0fcb868a2f1",
 			"name": "DELETE subOrg1 by admin - request authorized. subOrg1 status is disabled. but habe users",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
-			"time": 44,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa",
+			"time": 47,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -2043,7 +2073,7 @@
 				}
 			},
 			"times": [
-				44
+				47
 			],
 			"allTests": [
 				{
@@ -2054,8 +2084,8 @@
 		{
 			"id": "8c916a44-650b-4226-8375-7f5f615faef2",
 			"name": "DELETE user3 in SubOrg1",
-			"url": "https://localhost:9443/scim2/Users/f82f1b34-16c9-46b8-a49d-9a61975906a3",
-			"time": 150,
+			"url": "https://localhost:9443/scim2/Users/2337ac4f-5895-4827-9047-7ab540383bf6",
+			"time": 202,
 			"responseCode": {
 				"code": 204,
 				"name": "No Content"
@@ -2070,7 +2100,7 @@
 				}
 			},
 			"times": [
-				150
+				202
 			],
 			"allTests": [
 				{
@@ -2081,8 +2111,8 @@
 		{
 			"id": "cbb26688-7cc0-4099-92a7-4d37a2668ccf",
 			"name": "DELETE subOrg1 by admin - (successful)request authorized. subOrg1 status is disabled.  no usres",
-			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/bc804a26-b12b-453f-9e2b-a27b054fa463",
-			"time": 78,
+			"url": "https://localhost:9443/api/identity/organization-mgt/v1.0/organizations/b8b5d19f-050c-458d-8a9d-6cbf698bd6fa",
+			"time": 75,
 			"responseCode": {
 				"code": 204,
 				"name": "No Content"
@@ -2097,7 +2127,7 @@
 				}
 			},
 			"times": [
-				78
+				75
 			],
 			"allTests": [
 				{
@@ -2107,11 +2137,19 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 5082,
+	"totalTime": 10567,
 	"collection": {
 		"requests": [
 			{
 				"id": "751a6cd1-27b7-4432-b0e5-44ae2c62c67b",
+				"method": "GET"
+			},
+			{
+				"id": "f979aef5-cf3d-455e-8fe8-37770a52eb3b",
+				"method": "GET"
+			},
+			{
+				"id": "76f4095c-f15c-41c5-9171-89cd23e65c22",
 				"method": "GET"
 			},
 			{
@@ -2123,16 +2161,16 @@
 				"method": "GET"
 			},
 			{
-				"id": "76f4095c-f15c-41c5-9171-89cd23e65c22",
-				"method": "GET"
-			},
-			{
-				"id": "f979aef5-cf3d-455e-8fe8-37770a52eb3b",
-				"method": "GET"
-			},
-			{
 				"id": "d01a2422-c44b-4217-91f9-c8744f1f1a0e",
 				"method": "GET"
+			},
+			{
+				"id": "d1d09e8a-fa5d-496e-b4b4-5ba6860ee5ac",
+				"method": "PUT"
+			},
+			{
+				"id": "17a3b007-c051-4ba0-aabb-ce353c52c653",
+				"method": "PUT"
 			},
 			{
 				"id": "50f8b89d-65e4-4f6b-a916-87f393332ee8",
@@ -2143,40 +2181,20 @@
 				"method": "PUT"
 			},
 			{
-				"id": "17a3b007-c051-4ba0-aabb-ce353c52c653",
-				"method": "PUT"
-			},
-			{
-				"id": "d1d09e8a-fa5d-496e-b4b4-5ba6860ee5ac",
-				"method": "PUT"
-			},
-			{
 				"id": "47f89ec5-86b4-493d-9bac-c01630f0676a",
 				"method": "PUT"
 			},
 			{
-				"id": "cb9294cb-8fca-4780-9635-e800efff11b0",
-				"method": "PUT"
-			},
-			{
-				"id": "eedd5acc-ad76-4994-8f88-3c87d39fa15c",
-				"method": "PUT"
-			},
-			{
-				"id": "d37dca4b-1784-4b5b-a6b5-64aba6d0c98d",
-				"method": "PUT"
-			},
-			{
-				"id": "68a20610-6d82-4fa7-92f1-0001a6f13fa3",
-				"method": "PUT"
-			},
-			{
-				"id": "23e09e94-2ae6-4521-b2bb-0944d237aba9",
-				"method": "PUT"
+				"id": "4dd9b03f-9d4a-48ca-a2af-cc51cc384348",
+				"method": "GET"
 			},
 			{
 				"id": "24fe3aea-9b17-4718-b88c-4df0c890a4b2",
 				"method": "GET"
+			},
+			{
+				"id": "24e21be2-0922-4782-a952-0ad79bb89881",
+				"method": "POST"
 			},
 			{
 				"id": "c91bcf8b-cde4-430a-8255-113d544ed2d2",
@@ -2224,10 +2242,6 @@
 			},
 			{
 				"id": "b45455ec-1527-42ab-bf91-2e67d304b149",
-				"method": "POST"
-			},
-			{
-				"id": "3e72c6aa-98e7-4001-91af-a4be6706555f",
 				"method": "POST"
 			},
 			{
@@ -2327,6 +2341,18 @@
 				"method": "GET"
 			},
 			{
+				"id": "436a48ea-3c6a-4154-bfaa-6322e8eec4a1",
+				"method": "PATCH"
+			},
+			{
+				"id": "38b6be2f-cd85-4d72-ac02-6ce2e310c9b9",
+				"method": "PATCH"
+			},
+			{
+				"id": "1abafa8b-a987-45fe-8a72-7d156a7cf5f1",
+				"method": "PATCH"
+			},
+			{
 				"id": "e1519f9f-c0f7-495b-a782-c4945b7cd137",
 				"method": "POST"
 			},
@@ -2339,6 +2365,14 @@
 				"method": "GET"
 			},
 			{
+				"id": "a4281d1e-5a7d-482a-8579-442768d571ae",
+				"method": "POST"
+			},
+			{
+				"id": "30e54b1d-7cdd-4588-b48f-78bade665b88",
+				"method": "POST"
+			},
+			{
 				"id": "4222da56-215c-4203-83e3-e83172fe0f0c",
 				"method": "POST"
 			},
@@ -2349,6 +2383,10 @@
 			{
 				"id": "9388c4d4-a8a6-4a94-b0a1-f62febe5c4e8",
 				"method": "POST"
+			},
+			{
+				"id": "f75bed44-111f-48fe-b8ee-4ecea1492225",
+				"method": "PATCH"
 			},
 			{
 				"id": "75d6a391-7c72-45c1-9635-29c94407be87",
