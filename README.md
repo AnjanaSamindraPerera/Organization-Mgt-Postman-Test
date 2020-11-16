@@ -18,11 +18,13 @@
 
 6. Run the test collection.
 
-**step-1 :**
+**STEP-1 :**
 
 ![test-run](images/test-run.png)
 
-**step-2 :**
+**STEP-2 :**
+
+!NOTE: If you want to view the response bodies and headers after the test run, click the "Save responses" option.
 
 ![initiate-test-run](images/initiate-test-run.png)
 
