@@ -32,3 +32,10 @@
 7. **Test Result :**
 
 ![test-result](images/test-result.png)
+
+
+If you want to view the test results given in the repo,
+
+1. Navigate to Postman and click on **File -> New Runner Window**.
+    
+2. Click on **Import Runs** on theright upper corner and select the TestResult.json file.
