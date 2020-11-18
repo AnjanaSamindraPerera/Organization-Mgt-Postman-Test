@@ -11,6 +11,7 @@
     - `User_Viewer`
     - `Role_Administrator`
     - `Role_Viewer`
+    - `AdminRole_Administrator`
     
 4. Download Postman. (https://www.postman.com/downloads/)
 
