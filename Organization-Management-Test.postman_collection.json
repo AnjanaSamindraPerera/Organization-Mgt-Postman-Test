@@ -1786,6 +1786,67 @@
 					"response": []
 				},
 				{
+					"name": "GET  User_Viewer Role by Id - by User1(smith) - with organization_administrator role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2e2aefd-3be1-4dab-970c-2f9956cbdb50",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "461822c7-d044-469f-aeb4-8694f32a0539",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{PasswordOfUserInParentOrg}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{UserNameOfUserInParentOrg}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/scim2/Groups/{{UserViewerRoleId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Groups",
+								"{{UserViewerRoleId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Organization(SubOrg1) under Parent by created user(smith) - Since he got org creation permission against root with include sub-orgs tihs request should be passed",
 					"event": [
 						{
@@ -5295,6 +5356,11 @@
 								{
 									"key": "attributes",
 									"value": "name,urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.organization"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
 								}
 							]
 						}
@@ -5336,12 +5402,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "{{PasswordOfUserInParentOrg}}",
+									"value": "smith123",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "{{UserNameOfUserInParentOrg}}",
+									"value": "smith",
 									"type": "string"
 								}
 							]
@@ -5368,6 +5434,94 @@
 								{
 									"key": "attributes",
 									"value": "name,urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.organization"
+								},
+								{
+									"key": "filter",
+									"value": "userName+co+s",
+									"disabled": true
+								},
+								{
+									"key": "count",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "startIndex",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View members of a role - with attributes and filtering - by User1(smith)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "59075c13-41d2-4555-9ace-d4ab1699e711",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes only admin\", function () {",
+									"    pm.expect(response).to.have.instanceOf(Array);",
+									"    pm.expect(response.length).to.equal(1);",
+									"    pm.expect(response[0].userName).to.equal(\"smith\");",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{PasswordOfUserInParentOrg}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{UserNameOfUserInParentOrg}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles/{{OrgAdminRoleId}}/users?attributes=name,urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.organization,userName&filter=userName+eq+smith",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ParentOrg}}",
+								"roles",
+								"{{OrgAdminRoleId}}",
+								"users"
+							],
+							"query": [
+								{
+									"key": "attributes",
+									"value": "name,urn:ietf:params:scim:schemas:extension:enterprise:2.0:User.organization,userName"
+								},
+								{
+									"key": "filter",
+									"value": "userName+eq+smith"
 								}
 							]
 						}
@@ -5826,6 +5980,67 @@
 					"response": []
 				},
 				{
+					"name": "GET  user3 user by Id - by admin (as super admin)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "afeb9285-1149-4577-b2d6-35aadf2e59ab",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5164c5b6-103b-4508-b442-e9a51c2fcd5c",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/scim2/Users/{{User3SubOrg}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Users",
+								"{{User3SubOrg}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Update user3 in SubOrg",
 					"event": [
 						{
@@ -5958,12 +6173,12 @@
 					"response": []
 				},
 				{
-					"name": "Assign Organization_Administrator role to admin user against SubOrg1 Copy",
+					"name": "AssignOrganization_Administrator role to admin user against SubOrg1",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "d5a87d27-d050-4150-ad94-23b6d8638fc8",
+								"id": "d7d248ca-908a-4e83-ac1b-ed51f980a9ab",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
 									"    pm.response.to.have.status(201);",
