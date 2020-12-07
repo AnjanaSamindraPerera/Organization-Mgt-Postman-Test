@@ -1635,6 +1635,160 @@
 					"response": []
 				},
 				{
+					"name": "Assign non-exisitng role to admin user against ROOT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "098af9d2-ad6f-4906-9bb4-50e347ba4394",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(response.code).to.equal('ORGPERMMGT_00002');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"roleId\": \"{{$guid}}\",\n   \"users\": [\n     {\n        \"userId\": \"{{adminId}}\",\n        \"includeSubOrgs\": \"false\"\n     }\n   ]\n }\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Parent org's Organization_Administrator assigned user - Creator should get roles assigned to immediate parent even without includeSubOrgs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c3ea42e3-a0f8-4e78-be67-4c6237083d7a",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Successful Get request\", function () {",
+									"     pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes admin user\", function () {",
+									"    pm.expect(response[0].userName).to.equal(pm.environment.get('admin_username'));",
+									"    pm.expect(response[0].assignedMeta[0].includeSubOrgs).to.equal(false);",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ParentOrg'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2f227c29-d20d-4713-9cb4-cc220fbaf039",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles/{{OrgAdminRoleId}}/users?attributes=userName",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ParentOrg}}",
+								"roles",
+								"{{OrgAdminRoleId}}",
+								"users"
+							],
+							"query": [
+								{
+									"key": "attributes",
+									"value": "userName"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create User1(smith) in parent org",
 					"event": [
 						{
@@ -1708,6 +1862,334 @@
 							"path": [
 								"scim2",
 								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign User_Administrator role to user1(smith) user against ROOT - with include sub orgs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "861b0234-5c36-4ebf-a017-04a74c32ba56",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"roleId\": \"{{UserAdminRoleId}}\",\n   \"users\": [\n     {\n        \"userId\": \"{{UserInParentOrg}}\",\n        \"includeSubOrgs\": \"true\"\n     }\n   ]\n }\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Parent org's User_Administrator assigned user - Confirm inheritance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4523644-5ba8-4ac7-87d6-7197cb759992",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Successful Get request\", function () {",
+									"     pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes admin user\", function () {",
+									"    pm.expect(response[1].userName).to.equal(pm.environment.get('admin_username'));",
+									"    pm.expect(response[1].assignedMeta[0].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[1].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ROOTOrgId'));",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response includes smith user\", function () {",
+									"    pm.expect(response[0].userName).to.equal(pm.environment.get('UserNameOfUserInParentOrg'));",
+									"    pm.expect(response[0].assignedMeta[0].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ROOTOrgId'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3e804477-50f9-4662-bd7b-fca772e543d5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles/{{UserAdminRoleId}}/users?attributes=userName&sortBy=userName",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ParentOrg}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users"
+							],
+							"query": [
+								{
+									"key": "attributes",
+									"value": "userName"
+								},
+								{
+									"key": "sortBy",
+									"value": "userName"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign User_Administrator role to user1(smith) user against ParentOrg - with include sub orgs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "362e25c1-d124-4f9d-9477-b4b15429aa83",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"roleId\": \"{{UserAdminRoleId}}\",\n   \"users\": [\n     {\n        \"userId\": \"{{UserInParentOrg}}\",\n        \"includeSubOrgs\": \"true\"\n     }\n   ]\n }\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ParentOrg}}",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Parent org's User_Administrator assigned user - Confirm inheritance can be assigned by more than one level",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f2da8dbc-8be3-4642-87f7-a21e5be9c180",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Successful Get request\", function () {",
+									"     pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response includes admin user\", function () {",
+									"    pm.expect(response[1].userName).to.equal(pm.environment.get('admin_username'));",
+									"    pm.expect(response[1].assignedMeta[0].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[1].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ROOTOrgId'));",
+									"});",
+									"",
+									"",
+									"pm.test(\"Response includes smith user\", function () {",
+									"    pm.expect(response[0].userName).to.equal(pm.environment.get('UserNameOfUserInParentOrg'));",
+									"    pm.expect(response[0].assignedMeta[0].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ROOTOrgId'));",
+									"    pm.expect(response[0].assignedMeta[1].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[0].assignedMeta[1].assignedAt).to.equal(pm.environment.get('ParentOrg'));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "03846830-fa4d-487a-9c83-fa61aa163656",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles/{{UserAdminRoleId}}/users?attributes=userName&sortBy=userName",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ParentOrg}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users"
+							],
+							"query": [
+								{
+									"key": "attributes",
+									"value": "userName"
+								},
+								{
+									"key": "sortBy",
+									"value": "userName"
+								}
 							]
 						}
 					},
@@ -6793,6 +7275,65 @@
 					"response": []
 				},
 				{
+					"name": "DELETE User_Viewer role from user3(mary) over SubOrg - Not assigned role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "be23ed12-aa83-42e8-b278-4d567fe87d5e",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"    pm.expect(response.code).equals('ORGPERMMGT_00004');",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{SubOrg1}}/roles/{{UserViewerRoleId}}/users/{{User3SubOrg}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{SubOrg1}}",
+								"roles",
+								"{{UserViewerRoleId}}",
+								"users",
+								"{{User3SubOrg}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "PATCH User_Administrator role's includeSubOrgs to false from admin over ParentOrg - Not directly assigned role",
 					"event": [
 						{
@@ -7032,7 +7573,7 @@
 					"response": []
 				},
 				{
-					"name": "PATCH the SubOrg status to disable",
+					"name": "PATCH the SubOrg1 status to disable",
 					"event": [
 						{
 							"listen": "test",
@@ -7150,6 +7691,80 @@
 					"response": []
 				},
 				{
+					"name": "Create Organization(SubOrg2) under SubOrg1 by created user(smith) - create under disabled org",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "06342d41-3f6b-43e1-a871-79ff708c6198",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Status code should be 400\", function () {",
+									"     pm.response.to.have.status(400);",
+									"     pm.expect(response.code).to.equal('ORGMGT_00001');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9c3205bc-5d3f-4920-8bf1-4be37f26cc93",
+								"exec": [
+									"let OrgName2 = 'wso2-new'",
+									"pm.environment.set('OrgName2',OrgName2)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{PasswordOfUserInParentOrg}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{UserNameOfUserInParentOrg}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{OrgName2}}\",\n    \"displayName\": \"WSO2\",\n    \"parentId\": \"{{SubOrg1}}\",\n    \"description\": \"LK organization\",\n    \"attributes\": [\n        {\n            \"key\": \"Type\",\n            \"value\": \"partner\"\n        },\n        {\n            \"key\": \"Exp\",\n            \"value\": \"2021\"\n        }\n    ],\n    \"userStoreConfigs\": [\n        {\n            \"key\": \"RDN\",\n            \"value\": \"{{OrgName2}}\"\n        },\n        {\n            \"key\": \"USER_STORE_DOMAIN\",\n            \"value\": \"PRIMARY\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "DELETE user3 in SubOrg",
 					"event": [
 						{
@@ -7217,12 +7832,12 @@
 					"response": []
 				},
 				{
-					"name": "DELETE subOrg1 by admin - (successful)request authorized. subOrg1 status is disabled.  no usres",
+					"name": "DELETE subOrg1 by admin - (successful)request authorized. subOrg1 status is disabled.  no usres or no active orgs Copy",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "b266e2c2-28be-4cc7-9a79-980a22d7aa45",
+								"id": "74176128-05ea-47a5-995a-34ba4ad4c456",
 								"exec": [
 									"pm.test(\"Delete the organization successfully\", function () {",
 									"    pm.response.to.have.status(204);",
@@ -7268,34 +7883,27 @@
 						}
 					},
 					"response": []
-				}
-			],
-			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "Cleanup-requests",
-			"item": [
+				},
 				{
-					"name": "Delete the created application",
+					"name": "DELETE user1(smith) in ParentOrg by kim - no permissions",
 					"event": [
 						{
-							"listen": "prerequest",
+							"listen": "test",
 							"script": {
-								"id": "7bc3bfd9-e5f2-445c-b55b-4ea4cb98e0d3",
+								"id": "f416c7f5-c3c4-4ac7-956b-c4705d16b232",
 								"exec": [
-									""
+									"pm.test(\"Status should be 403\", function () {",
+									"     pm.response.to.have.status(403);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
 						},
 						{
-							"listen": "test",
+							"listen": "prerequest",
 							"script": {
-								"id": "b70aed3e-0f4d-4689-b658-02d3df7c46a7",
+								"id": "b4b8df8f-e374-4223-8a33-f924e0c40bc3",
 								"exec": [
-									"pm.test(\"Status code is 204\", function () {",
-									"    pm.response.to.have.status(204);",
-									"});",
 									""
 								],
 								"type": "text/javascript"
@@ -7308,12 +7916,12 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "admin",
+									"value": "{{PasswordOfUser2InParentOrg}}",
 									"type": "string"
 								},
 								{
 									"key": "username",
-									"value": "admin",
+									"value": "{{UserNameOfUser2InParentOrg}}",
 									"type": "string"
 								}
 							]
@@ -7330,79 +7938,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/api/server/v1/applications/{{SampleApplicationId}}",
+							"raw": "{{baseurl}}/scim2/Users/{{UserInParentOrg}}",
 							"host": [
 								"{{baseurl}}"
 							],
 							"path": [
-								"api",
-								"server",
-								"v1",
-								"applications",
-								"{{SampleApplicationId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "PATCH the ParentOrg status to disable",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "6cdbe556-f38d-419b-b04f-885ee83cd4fb",
-								"exec": [
-									"pm.test(\"Status code is 204\", function () {",
-									"    pm.response.to.have.status(204);",
-									"});",
-									"",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{admin_password}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{admin_username}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/status\",\n        \"value\": \"DISABLED\"\n    }\n]",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"api",
-								"identity",
-								"organization-mgt",
-								"v1.0",
-								"organizations",
-								"{{ParentOrg}}"
+								"scim2",
+								"Users",
+								"{{UserInParentOrg}}"
 							]
 						}
 					},
@@ -7543,15 +8086,703 @@
 					"response": []
 				},
 				{
-					"name": "PATCH User_Administrator role's includeSubOrgs to false from admin over ROOT - directly assigned role",
+					"name": "PATCH User_Administrator role's includeSubOrgs to true from admin over ROOT -No update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "540f9cad-6e5c-4173-94ee-08aaa33a34ce",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"/includeSubOrgs\",\n    \"value\": \"false\"\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles/{{UserAdminRoleId}}/users/{{adminId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users",
+								"{{adminId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH property except includeSubOrgs - User_Administrator role assigned to admin over ROOT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "13a96f2e-0f96-4cef-aede-2a933728ff15",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(response.code).equals('ORGPERMMGT_00007');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"/roleId\",\n    \"value\": \"false\"\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles/{{UserAdminRoleId}}/users/{{adminId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users",
+								"{{adminId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH User_Administrator role's includeSubOrgs to false   from admin over ROOT - use add operation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bdeb18eb-d50d-42ba-82c5-84c1552185e4",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(response.code).equals('ORGPERMMGT_00007');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/includeSubOrgs\",\n    \"value\": \"true\"\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles/{{UserAdminRoleId}}/users/{{adminId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users",
+								"{{adminId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH User_Administrator role's includeSubOrgs to false   from admin over ROOT - use remove operation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b76abbd5-d713-4707-ae6f-27769affcca6",
+								"exec": [
+									"let response = pm.response.json();",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(response.code).equals('ORGPERMMGT_00007');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"/includeSubOrgs\",\n    \"value\": \"true\"\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles/{{UserAdminRoleId}}/users/{{adminId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users",
+								"{{adminId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH User_Administrator role's includeSubOrgs to false from admin over ROOT - Directly assigned role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6502126b-7164-4b22-8006-7318bca02809",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"/includeSubOrgs\",\n    \"value\": \"false\"\n  }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles/{{UserAdminRoleId}}/users/{{adminId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users",
+								"{{adminId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to create User4(alex) in parent org by admin- Now don't have permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c2da3df-d838-4d9e-90fa-2cccffb7ae92",
+								"exec": [
+									"pm.test(\"Status should be 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f7ffc39c-7134-4e69-9818-603e6c58caa3",
+								"exec": [
+									"let UserNameOfUser4InParentOrg= 'alex'",
+									"pm.environment.set('UserNameOfUser4InParentOrg',UserNameOfUser4InParentOrg)",
+									"",
+									"let PasswordOfUser4InParentOrg = 'alex123'",
+									"pm.environment.set('PasswordOfUser4InParentOrg',PasswordOfUser4InParentOrg)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schemas\":[],\n    \"name\":{\n        \"givenName\":\"Alex\",\n        \"familyName\":\"Paul\"\n    },\n    \"userName\":\"{{UserNameOfUser4InParentOrg}}\",\n    \"password\":\"{{PasswordOfUser4InParentOrg}}\",\n     \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n        \"organization\": {\n            \"name\": \"{{OrgName}}\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Users",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User4(alex) in ROOT by admin- have permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ad0d9d0-18c8-4fb3-ba58-398a4b42793b",
+								"exec": [
+									"pm.test(\"Status should be 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"let jsonData = pm.response.json();",
+									"pm.environment.set(\"User4InParentOrg\", jsonData.id);",
+									"",
+									"pm.test(\"Response includes specified elements\", function () {",
+									"    let response = pm.response.json();",
+									"    pm.expect(response).to.have.ownProperty(\"name\"); ",
+									"    pm.expect(response.name.givenName).to.equal(\"Alex\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "5701af61-1a7c-471f-92c0-d2c1bfa863a5",
+								"exec": [
+									"let UserNameOfUser4InParentOrg= 'alex'",
+									"pm.environment.set('UserNameOfUser4InParentOrg',UserNameOfUser4InParentOrg)",
+									"",
+									"let PasswordOfUser4InParentOrg = 'alex123'",
+									"pm.environment.set('PasswordOfUser4InParentOrg',PasswordOfUser4InParentOrg)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schemas\":[],\n    \"name\":{\n        \"givenName\":\"Alex\",\n        \"familyName\":\"Paul\"\n    },\n    \"userName\":\"{{UserNameOfUser4InParentOrg}}\",\n    \"password\":\"{{PasswordOfUser4InParentOrg}}\",\n     \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n        \"organization\": {\n            \"id\": \"{{ROOTOrgId}}\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Users",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE user4(alex) in ROOT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9f1d7f73-9d62-4f79-a9ca-cb6141cda8fb",
+								"exec": [
+									"pm.test(\"Successful user deletion\", function () {",
+									"     pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3f3c3b59-1cae-4882-b1e6-67d3b97dbcfa",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Users/{{User4InParentOrg}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Users",
+								"{{User4InParentOrg}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User_Administrator role from admin over ROOT - Directly assigned role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "44a75ea9-6e33-4086-a919-78edc1c93038",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles/{{UserAdminRoleId}}/users/{{adminId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users",
+								"{{adminId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ReCreate User4(alex) in ROOT by admin- have permission - No permissions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "88b465a1-dc4b-4ff5-857b-337003b0dff6",
+								"exec": [
+									"pm.test(\"Status should be 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7d707dc2-eb2e-4d3b-9e54-a270b3c664be",
+								"exec": [
+									"let UserNameOfUser4InParentOrg= 'alex'",
+									"pm.environment.set('UserNameOfUser4InParentOrg',UserNameOfUser4InParentOrg)",
+									"",
+									"let PasswordOfUser4InParentOrg = 'alex123'",
+									"pm.environment.set('PasswordOfUser4InParentOrg',PasswordOfUser4InParentOrg)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schemas\":[],\n    \"name\":{\n        \"givenName\":\"Alex\",\n        \"familyName\":\"Paul\"\n    },\n    \"userName\":\"{{UserNameOfUser4InParentOrg}}\",\n    \"password\":\"{{PasswordOfUser4InParentOrg}}\",\n     \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n        \"organization\": {\n            \"id\": \"{{ROOTOrgId}}\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Users",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH User_Administrator role's includeSubOrgs to false from admin over ROOT - non existing",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "336bd0b3-6ebf-4204-b466-e08121f07ed1",
 								"exec": [
-									"pm.test(\"Status code is 204\", function () {",
-									"    pm.response.to.have.status(204);",
+									"let response = pm.response.json();",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"    pm.expect(response.code).equals('ORGPERMMGT_00007');",
 									"});",
 									"",
 									""
@@ -7603,6 +8834,145 @@
 								"{{UserAdminRoleId}}",
 								"users",
 								"{{adminId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cleanup-requests",
+			"item": [
+				{
+					"name": "Delete the created application",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7bc3bfd9-e5f2-445c-b55b-4ea4cb98e0d3",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b70aed3e-0f4d-4689-b658-02d3df7c46a7",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/server/v1/applications/{{SampleApplicationId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"server",
+								"v1",
+								"applications",
+								"{{SampleApplicationId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH the ParentOrg status to disable",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6cdbe556-f38d-419b-b04f-885ee83cd4fb",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/status\",\n        \"value\": \"DISABLED\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ParentOrg}}"
 							]
 						}
 					},
@@ -8059,63 +9429,6 @@
 								"{{ROOTOrgId}}",
 								"roles",
 								"{{OrgAdminRoleId}}",
-								"users",
-								"{{adminId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DELETE User_Administrator role from admin from ROOT",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "33b4fbba-f743-45f0-aa5d-ea63f3550096",
-								"exec": [
-									"pm.test(\"Status code is 204\", function () {",
-									"    pm.response.to.have.status(204);",
-									"});",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "{{admin_password}}",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "{{admin_username}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles/{{UserAdminRoleId}}/users/{{adminId}}",
-							"host": [
-								"{{baseurl}}"
-							],
-							"path": [
-								"api",
-								"identity",
-								"organization-mgt",
-								"v1.0",
-								"organizations",
-								"{{ROOTOrgId}}",
-								"roles",
-								"{{UserAdminRoleId}}",
 								"users",
 								"{{adminId}}"
 							]
