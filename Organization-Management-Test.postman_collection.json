@@ -1188,6 +1188,7 @@
 									"",
 									"pm.test(\"Response includes root organization\", function () {",
 									"   pm.environment.set(\"ROOTOrgId\", response[0].id);",
+									"    pm.environment.set(\"ROOTOrgName\", response[0].name);",
 									"});",
 									""
 								],
@@ -1715,7 +1716,8 @@
 									"pm.test(\"Response includes admin user\", function () {",
 									"    pm.expect(response[0].userName).to.equal(pm.environment.get('admin_username'));",
 									"    pm.expect(response[0].assignedMeta[0].includeSubOrgs).to.equal(false);",
-									"    pm.expect(response[0].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ParentOrg'));",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt.orgId).to.equal(pm.environment.get('ParentOrg'));",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt.orgName).to.equal(pm.environment.get('OrgName'));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -1763,7 +1765,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles/{{OrgAdminRoleId}}/users?attributes=userName",
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles/{{OrgAdminRoleId}}/users",
 							"host": [
 								"{{baseurl}}"
 							],
@@ -1781,7 +1783,8 @@
 							"query": [
 								{
 									"key": "attributes",
-									"value": "userName"
+									"value": "userName",
+									"disabled": true
 								}
 							]
 						}
@@ -1944,16 +1947,18 @@
 									"});",
 									"",
 									"pm.test(\"Response includes admin user\", function () {",
-									"    pm.expect(response[1].userName).to.equal(pm.environment.get('admin_username'));",
-									"    pm.expect(response[1].assignedMeta[0].includeSubOrgs).to.equal(true);",
-									"    pm.expect(response[1].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ROOTOrgId'));",
+									"    pm.expect(response[0].userName).to.equal(pm.environment.get('admin_username'));",
+									"    pm.expect(response[0].assignedMeta[0].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt.orgId).to.equal(pm.environment.get('ROOTOrgId'));",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt.orgName).to.equal(pm.environment.get('ROOTOrgName'));",
 									"});",
 									"",
 									"",
 									"pm.test(\"Response includes smith user\", function () {",
-									"    pm.expect(response[0].userName).to.equal(pm.environment.get('UserNameOfUserInParentOrg'));",
-									"    pm.expect(response[0].assignedMeta[0].includeSubOrgs).to.equal(true);",
-									"    pm.expect(response[0].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ROOTOrgId'));",
+									"    pm.expect(response[1].userName).to.equal(pm.environment.get('UserNameOfUserInParentOrg'));",
+									"    pm.expect(response[1].assignedMeta[0].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[1].assignedMeta[0].assignedAt.orgId).to.equal(pm.environment.get('ROOTOrgId'));",
+									"    pm.expect(response[1].assignedMeta[0].assignedAt.orgName).to.equal(pm.environment.get('ROOTOrgName'));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2107,18 +2112,21 @@
 									"});",
 									"",
 									"pm.test(\"Response includes admin user\", function () {",
-									"    pm.expect(response[1].userName).to.equal(pm.environment.get('admin_username'));",
-									"    pm.expect(response[1].assignedMeta[0].includeSubOrgs).to.equal(true);",
-									"    pm.expect(response[1].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ROOTOrgId'));",
+									"    pm.expect(response[0].userName).to.equal(pm.environment.get('admin_username'));",
+									"    pm.expect(response[0].assignedMeta[0].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt.orgId).to.equal(pm.environment.get('ROOTOrgId'));",
+									"    pm.expect(response[0].assignedMeta[0].assignedAt.orgName).to.equal(pm.environment.get('ROOTOrgName'));",
 									"});",
 									"",
 									"",
 									"pm.test(\"Response includes smith user\", function () {",
-									"    pm.expect(response[0].userName).to.equal(pm.environment.get('UserNameOfUserInParentOrg'));",
-									"    pm.expect(response[0].assignedMeta[0].includeSubOrgs).to.equal(true);",
-									"    pm.expect(response[0].assignedMeta[0].assignedAt).to.equal(pm.environment.get('ROOTOrgId'));",
-									"    pm.expect(response[0].assignedMeta[1].includeSubOrgs).to.equal(true);",
-									"    pm.expect(response[0].assignedMeta[1].assignedAt).to.equal(pm.environment.get('ParentOrg'));",
+									"    pm.expect(response[1].userName).to.equal(pm.environment.get('UserNameOfUserInParentOrg'));",
+									"    pm.expect(response[1].assignedMeta[0].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[1].assignedMeta[0].assignedAt.orgId).to.equal(pm.environment.get('ROOTOrgId'));",
+									"    pm.expect(response[1].assignedMeta[0].assignedAt.orgName).to.equal(pm.environment.get('ROOTOrgName'));",
+									"    pm.expect(response[1].assignedMeta[1].includeSubOrgs).to.equal(true);",
+									"    pm.expect(response[1].assignedMeta[1].assignedAt.orgId).to.equal(pm.environment.get('ParentOrg'));",
+									"    pm.expect(response[1].assignedMeta[1].assignedAt.orgName).to.equal(pm.environment.get('OrgName'));",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2166,7 +2174,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles/{{UserAdminRoleId}}/users?attributes=userName&sortBy=userName",
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ParentOrg}}/roles/{{UserAdminRoleId}}/users?sortBy=userName",
 							"host": [
 								"{{baseurl}}"
 							],
@@ -2184,7 +2192,8 @@
 							"query": [
 								{
 									"key": "attributes",
-									"value": "userName"
+									"value": "userName",
+									"disabled": true
 								},
 								{
 									"key": "sortBy",
