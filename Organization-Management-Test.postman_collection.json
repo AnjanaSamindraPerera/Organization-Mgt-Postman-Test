@@ -1871,6 +1871,206 @@
 					"response": []
 				},
 				{
+					"name": "Delete User_Administrator role to admin user against ROOT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5a2d74ee-462a-49bc-bcc4-3c6200c1551c",
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles/{{UserAdminRoleId}}/users/{{adminId}}",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles",
+								"{{UserAdminRoleId}}",
+								"users",
+								"{{adminId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Try to create User(ben) in parent org - when remove the User_Administrotor Role from ROOT level",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "07f8b760-bb81-45b2-a43d-7f2096569a7a",
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "a862b0d6-2e2f-48ea-a65d-b448212cc164",
+								"exec": [
+									"let UserNameOfTestUserInParentOrg= 'ben'",
+									"pm.environment.set('UserNameOfTestUserInParentOrg',UserNameOfTestUserInParentOrg)",
+									"",
+									"let PasswordOfTestUserInParentOrg = 'ben123'",
+									"pm.environment.set('PasswordOfTestUserInParentOrg',PasswordOfTestUserInParentOrg)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"schemas\":[],\n    \"name\":{\n        \"givenName\":\"Ben\",\n        \"familyName\":\"Mark\"\n    },\n    \"userName\":\"{{UserNameOfTestUserInParentOrg}}\",\n    \"password\":\"{{PasswordOfTestUserInParentOrg}}\",\n     \"urn:ietf:params:scim:schemas:extension:enterprise:2.0:User\": {\n        \"organization\": {\n            \"name\": \"{{OrgName}}\"\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/scim2/Users",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"scim2",
+								"Users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[Assign again]User_Administrator role to admin user against ROOT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9bd59c85-633e-484e-827e-5e828773df56",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{admin_password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{admin_username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"roleId\": \"{{UserAdminRoleId}}\",\n   \"users\": [\n     {\n        \"userId\": \"{{adminId}}\",\n        \"includeSubOrgs\": \"true\"\n     }\n   ]\n }\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseurl}}/api/identity/organization-mgt/v1.0/organizations/{{ROOTOrgId}}/roles",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"api",
+								"identity",
+								"organization-mgt",
+								"v1.0",
+								"organizations",
+								"{{ROOTOrgId}}",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Assign User_Administrator role to user1(smith) user against ROOT - with include sub orgs",
 					"event": [
 						{
